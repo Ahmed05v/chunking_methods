@@ -19,6 +19,8 @@ text, allowing the intentional overlap of LangChain's default splitter.
 The four postprocessed methods (page, sentence, semantic, and heading regex)
 have additional results after splitting oversized chunks and merging small
 ones. See [`chunk_size_summary.csv`](chunk_size_summary.csv) for all stages.
+See [`PAPER_COMPARISON.md`](PAPER_COMPARISON.md) for the side-by-side paper
+comparison, including the quality metrics that have not been measured here.
 `chunks/raw/chunks.parquet` stores the raw chunks; `chunks/no_oversizing/` and
 `chunks/small_merged/` store those postprocessed methods. Numbers above are
 basic chunk-size/coverage checks, **not** the paper's full intrinsic metrics or
