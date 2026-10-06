@@ -1,0 +1,5 @@
+method,raw_chunks,raw_mean,raw_std,raw_min,raw_max,post_chunks,post_mean,post_std,post_min,post_max,note
+llm_regex,2548,463.31475667189954,1236.2709559586763,3,46840,2270,520.2017621145375,328.1437701503348,69,1146,Local raw vs postprocessed counts; local regex is heuristic approximation
+page,1761,670.3725156161272,275.26984449742065,8,1765,1780,663.2348314606742,234.86686197884393,72,1146,Local raw vs postprocessed counts; local regex is heuristic approximation
+semantic,1706,692.5164126611958,1094.7322280129113,1,17146,1895,623.4126649076517,320.2938768177583,100,1140,Local raw vs postprocessed counts; local regex is heuristic approximation
+sentence,8498,139.35608378441987,65.44467938527113,4,1024,6809,173.82317520928183,62.54260487102275,100,1024,Local raw vs postprocessed counts; local regex is heuristic approximation

@@ -323,6 +323,8 @@ def split_oversized_chunks_from_df(
     for doc_name, group in df.groupby("doc_name"):
         raw_splits_per_doc[doc_name] = {}
         for method, sub_group in group.groupby("method"):
+            if not replace_all_results and method not in methods_to_be_regularized:
+                continue
             raw_splits_per_doc[doc_name][method] = sub_group.chunk_text.to_list()
 
     regularized_splits_per_doc = {}
@@ -432,6 +434,8 @@ def merge_small_chunks_from_df(
     for doc_name, group in df.groupby("doc_name"):
         raw_splits_per_doc[doc_name] = {}
         for method, sub_group in group.groupby("method"):
+            if not replace_all_results and method not in methods_to_be_regularized:
+                continue
             raw_splits_per_doc[doc_name][method] = sub_group.chunk_text.to_list()
 
     regularized_splits_per_doc = {}

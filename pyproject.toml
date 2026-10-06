@@ -8,7 +8,7 @@ version = "0.1.0"
 description = "Multi-domain document chunking evaluation framework with adaptive recursive splitting"
 readme = "README.md"
 license = "MIT"
-requires-python = ">=3.11"
+requires-python = ">=3.11,<3.14"
 authors = [
     { name = "Paulo Roberto de Moura Junior" },
     { name = "Jean Lelong" },
@@ -33,7 +33,10 @@ dependencies = [
     "numpy",
     "tqdm>=4.67.1",
     "python-dotenv>=1.1.0",
-    "sentence-transformers>=3.1",
+    "sentence-transformers==3.1.1",
+    "transformers==4.51.3",
+    "einops>=0.8",
+    "pyarrow>=19",
     "spacy>=3.8.4",
     "scikit-learn",
     "scipy",
@@ -52,13 +55,13 @@ parsing = [
 ]
 paper = [
     "adaptive-chunking[parsing,coref]",
-    "torch==2.6.0",
-    "torchvision==0.21.0",
+    "torch==2.8.0",
+    "torchvision==0.23.0",
     "langchain>=0.3.21",
     "langchain-experimental",
     "stanza>=1.10.1",
     "nltk",
-    "haystack-ai",
+    "haystack-ai>=2.10,<3",
     "openai",
     "deepeval",
     "groq>=0.21.0",
@@ -83,13 +86,13 @@ dev = [
 Repository = "https://github.com/ekimetrics/adaptive-chunking"
 
 [[tool.uv.index]]
-name = "pytorch-cu124"
-url = "https://download.pytorch.org/whl/cu124"
+name = "pytorch-cu128"
+url = "https://download.pytorch.org/whl/cu128"
 explicit = true
 
 [tool.uv.sources]
-torch = { index = "pytorch-cu124" }
-torchvision = { index = "pytorch-cu124" }
+torch = { index = "pytorch-cu128" }
+torchvision = { index = "pytorch-cu128" }
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/adaptive_chunking"]

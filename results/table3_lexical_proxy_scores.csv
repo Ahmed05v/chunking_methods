@@ -1,0 +1,11 @@
+method,metric,lexical_proxy_mean_pct,n,note
+LLM regex (local heuristic approximation),ICC,41.79,1,"TF-IDF heuristic, not paper embedding metric"
+LLM regex (local heuristic approximation),DCC,39.1,1,"TF-IDF heuristic, not paper embedding metric"
+"LangChain recursive (1100), raw",ICC,30.85,2,"TF-IDF heuristic, not paper embedding metric"
+"LangChain recursive (1100), raw",DCC,60.17,2,"TF-IDF heuristic, not paper embedding metric"
+"LangChain recursive (default), raw",ICC,29.83,2,"TF-IDF heuristic, not paper embedding metric"
+"LangChain recursive (default), raw",DCC,64.27,2,"TF-IDF heuristic, not paper embedding metric"
+"Page, raw",ICC,33.51,2,"TF-IDF heuristic, not paper embedding metric"
+"Page, raw",DCC,54.69,2,"TF-IDF heuristic, not paper embedding metric"
+"Sentence, raw",ICC,53.85,2,"TF-IDF heuristic, not paper embedding metric"
+"Sentence, raw",DCC,30.15,2,"TF-IDF heuristic, not paper embedding metric"

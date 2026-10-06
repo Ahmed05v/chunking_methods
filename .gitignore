@@ -91,6 +91,19 @@ scratch/**
 # Python virtual environment
 .venv/
 
+# Local model downloads and runtime caches
+.hf-cache/
+.hf-cache2/
+.hf-models/
+.hf-modules2/
+.stanza_resources/
+.rag-st6/
+.uv-cache/
+.deepeval/
+
+# Superseded metric backups retained only on this machine
+results/**/chunking_metrics_before_proxy_repair.parquet
+
 # Pytest
 .pytest_cache/
 

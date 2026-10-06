@@ -1,0 +1,5 @@
+method,documents_selected,share_percent,paper_share_percent,note
+page,14,42.4,48,Local measured selection; not the paper's LLM output
+our_recurs_1100,13,39.4,42,Local measured selection; not the paper's LLM output
+our_recurs_600,1,3.0,3,Local measured selection; not the paper's LLM output
+llm_regex,5,15.2,6,Local measured selection; not the paper's LLM output

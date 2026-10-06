@@ -1,0 +1,4 @@
+﻿domain,our_docs,paper_docs,our_mean_tokens,paper_mean_tokens,our_max_tokens,paper_max_tokens,our_min_tokens,paper_min_tokens,our_mean_pages,paper_mean_pages,our_total_tokens,paper_total_tokens
+Tech,9,9,5257,5257,18605,18605,1475,1475,12,12,47315,47313
+Legal,16,16,30895,30895,118424,118424,523,523,46,46,494313,494320
+Social sciences,8,8,79862,79862,391660,391660,8013,8013,114,114,638898,638896

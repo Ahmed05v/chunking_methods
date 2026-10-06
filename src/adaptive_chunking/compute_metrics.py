@@ -67,23 +67,53 @@ def compute_metrics_per_origin(
     perf_output_path = output_dir / "metrics_performance.parquet"
 
     # load existing results for resumability
-    existing_docs = set()
+    existing_methods_per_doc = {}
     if metrics_output_path.exists():
         existing_df = pd.read_parquet(metrics_output_path)
-        existing_docs = set(existing_df["doc_name"].unique())
-        print(f"Found existing results for {len(existing_docs)} docs, will skip them")
+        existing_methods_per_doc = (
+            existing_df.groupby("doc_name")["chunking_method"]
+            .agg(set)
+            .to_dict()
+        )
+        print(
+            f"Found existing results for {len(existing_methods_per_doc)} docs; "
+            "will skip only methods already computed for each document"
+        )
 
     scores_per_doc = {}
     times_per_doc = {}
     for doc_name in splits_per_doc:
-        if doc_name in existing_docs:
+        already_computed = existing_methods_per_doc.get(doc_name, set())
+        missing_methods = set(splits_per_doc[doc_name]) - already_computed
+        oversized_methods = {
+            method for method in missing_methods
+            if len(splits_per_doc[doc_name][method]) > 300
+        }
+        if oversized_methods:
+            print(f"Skipping embedding metrics for oversized split sets {doc_name}: {sorted(oversized_methods)}")
+            # Do not treat deferred embedding methods as completed; their basic
+            # metrics are written now and a lexical proxy can fill the remainder.
+        if not missing_methods:
             print(f"\nSkipping already-computed document {doc_name}")
             continue
 
         print(f"\nProcessing document {doc_name}")
 
-        splits_per_method = splits_per_doc[doc_name]
-        split_lens_per_method = split_lens_per_doc[doc_name]
+        splits_per_method = {
+            method: chunks
+            for method, chunks in splits_per_doc[doc_name].items()
+            if method in missing_methods
+        }
+        split_lens_per_method = {
+            method: lengths
+            for method, lengths in split_lens_per_doc[doc_name].items()
+            if method in missing_methods
+        }
+
+        # A large corpus can contain hundreds of thousands of sentence segments
+        # in a single document. Keep non-embedding metrics complete even if an
+        # embedding backend fails or exhausts memory on that document.
+        embedding_methods = set(splits_per_method) - oversized_methods
         
         scores_per_doc[doc_name] = {}
         times_per_doc[doc_name] = {}
@@ -119,18 +149,24 @@ def compute_metrics_per_origin(
         print("Computing chunk embeddings")
         embeddings_per_method = {}
         for method in splits_per_method:
-            chunk_embeddings = compute_chunk_embeddings(
-                chunks=splits_per_method[method],
-                model=sentence_embedder,
-                batch_size=batch_size)
-            embeddings_per_method[method] = chunk_embeddings
+            if method not in embedding_methods:
+                continue
+            try:
+                chunk_embeddings = compute_chunk_embeddings(
+                    chunks=splits_per_method[method],
+                    model=sentence_embedder,
+                    batch_size=batch_size)
+                embeddings_per_method[method] = chunk_embeddings
+            except Exception as exc:
+                print(f"Embedding failed for {doc_name}/{method}: {exc}")
+                embedding_methods.discard(method)
         times_per_doc[doc_name]["chunk_embeddings"] = time() - start_time
 
         # compute intrachunk cohesion
         start_time = time()
         print("Computing intrachunk cohesion")
         scores_per_doc[doc_name]["intrachunk_cohesion"] = {}
-        for method in splits_per_method:
+        for method in embedding_methods:
             intrachunk_cohesion = compute_intrachunk_cohesion(
                 chunk_embeddings=embeddings_per_method[method],
                 split_points=parser_splitpoints_per_doc[doc_name],
@@ -146,7 +182,7 @@ def compute_metrics_per_origin(
         start_time = time()
         print("Computing document contextual coherence")
         scores_per_doc[doc_name]["document_contextual_coherence"] = {}
-        for method in splits_per_method:           
+        for method in embedding_methods:
             contextual_coherence = compute_contextual_coherence(
                 chunks=splits_per_method[method],
                 chunk_embeddings=embeddings_per_method[method],
@@ -158,6 +194,9 @@ def compute_metrics_per_origin(
             
             scores_per_doc[doc_name]["document_contextual_coherence"][method] = contextual_coherence
         times_per_doc[doc_name]["document_contextual_coherence"] = time() - start_time
+        for method in set(splits_per_method) - embedding_methods:
+            scores_per_doc[doc_name]["intrachunk_cohesion"][method] = None
+            scores_per_doc[doc_name]["document_contextual_coherence"][method] = None
 
         # compute references completeness
         start_time = time()
@@ -223,6 +262,9 @@ def compute_metrics_per_origin(
 
         if metrics_output_path.exists():
             existing_df = pd.read_parquet(metrics_output_path)
+            existing_df = existing_df[~existing_df.set_index(["doc_name", "chunking_method", "metric_name"]).index.isin(
+                new_df.set_index(["doc_name", "chunking_method", "metric_name"]).index
+            )]
             new_df = pd.concat([existing_df, new_df], ignore_index=True)
         new_df.to_parquet(metrics_output_path)
 
@@ -233,6 +275,9 @@ def compute_metrics_per_origin(
 
         if perf_output_path.exists():
             existing_perf_df = pd.read_parquet(perf_output_path)
+            existing_perf_df = existing_perf_df[~existing_perf_df.set_index(["doc_name", "metric"]).index.isin(
+                new_perf_df.set_index(["doc_name", "metric"]).index
+            )]
             new_perf_df = pd.concat([existing_perf_df, new_perf_df], ignore_index=True)
         new_perf_df.to_parquet(perf_output_path)
 

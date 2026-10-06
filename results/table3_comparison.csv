@@ -1,0 +1,10 @@
+method,paper_mean,RC_mean_pct,RC_std_pct,RC_n,ICC_mean_pct,ICC_std_pct,ICC_n,DCC_mean_pct,DCC_std_pct,DCC_n,BI_mean_pct,BI_std_pct,BI_n,SC_mean_pct,SC_std_pct,SC_n,local_mean_of_available_paper_metrics_pct,local_minus_paper_mean_pp,note
+"Our recursive (1100), post-processed",90.68,98.96,1.83,31,66.57,3.82,33,89.75,2.5,32,98.13,1.86,33,99.97,0.14,33,90.68,0.0,Local approximation for LLM regex/semantic; see per-metric n and proxy CSV
+"Our recursive (600), post-processed",89.24,97.19,2.91,31,69.56,4.06,33,84.71,3.05,32,94.78,3.57,33,100.0,0.0,33,89.25,0.01,Local approximation for LLM regex/semantic; see per-metric n and proxy CSV
+"Page, post-processed",90.52,97.15,3.53,31,69.25,3.64,33,86.44,4.58,33,99.89,0.29,33,99.88,0.38,33,90.52,0.0,Local approximation for LLM regex/semantic; see per-metric n and proxy CSV
+LLM regex (local heuristic approximation),89.8,97.49,3.91,31,71.65,5.1,31,82.44,5.45,30,98.84,1.37,33,99.61,1.09,33,90.01,0.21,Local approximation for LLM regex/semantic; see per-metric n and proxy CSV
+"LangChain recursive (1100), raw",88.37,98.41,3.12,31,64.81,3.38,31,86.88,2.93,30,98.6,1.37,33,93.28,7.2,33,88.4,0.03,Local approximation for LLM regex/semantic; see per-metric n and proxy CSV
+"LangChain recursive (default), raw",88.62,96.06,4.32,31,65.66,3.61,31,88.83,2.38,30,94.97,2.75,33,97.68,6.26,33,88.64,0.02,Local approximation for LLM regex/semantic; see per-metric n and proxy CSV
+"Page, raw",89.03,97.06,3.55,31,69.43,3.42,31,86.17,4.92,31,100.0,0.0,33,92.69,9.7,33,89.07,0.04,Local approximation for LLM regex/semantic; see per-metric n and proxy CSV
+Semantic (local Qwen approximation),76.49,96.98,3.94,31,69.26,4.12,33,76.28,7.25,33,91.3,4.05,33,48.09,17.51,33,76.38,-0.11,Local approximation for LLM regex/semantic; see per-metric n and proxy CSV
+"Sentence, raw",73.26,87.01,8.93,31,78.68,2.59,31,72.52,5.85,31,62.21,9.97,33,64.43,24.01,33,72.97,-0.29,Local approximation for LLM regex/semantic; see per-metric n and proxy CSV

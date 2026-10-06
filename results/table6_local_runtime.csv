@@ -1,0 +1,11 @@
+stage,seconds,note
+chunking:page,0.005608797073364258,Local wall times across processed docs
+chunking:sentence,126.3171169757843,Local wall times across processed docs
+chunking:langch_recurs_1100,1.2369608879089355,Local wall times across processed docs
+chunking:langch_recurs_default,0.0335843563079834,Local wall times across processed docs
+chunking:our_recurs_1100,13.89115309715271,Local wall times across processed docs
+chunking:our_recurs_600,11.168853521347046,Local wall times across processed docs
+chunking:semantic,191.49871611595154,Local wall times across processed docs
+chunking:llm_regex,1.3048622608184814,Local wall times across processed docs
+postprocessed_metrics_non_embedding,4.229025363922119,Only recorded non-embedding portions; incomplete wall time
+raw_metrics_non_embedding,0.9767355918884277,Only recorded non-embedding portions; incomplete wall time

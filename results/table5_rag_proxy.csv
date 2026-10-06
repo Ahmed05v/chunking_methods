@@ -1,0 +1,4 @@
+method,questions,retrieval_completeness_proxy_pct,correctness_lexical_proxy_pct,mean_proxy_pct,paper_mean_pct,note
+best,99,100.0,53.29,76.64,71.77,TF-IDF and reference-answer token overlap; not GPT-4.1 judged; replacement QA set
+langch_recurs_default,99,100.0,55.01,77.5,62.07,TF-IDF and reference-answer token overlap; not GPT-4.1 judged; replacement QA set
+page,99,100.0,46.08,73.04,63.8,TF-IDF and reference-answer token overlap; not GPT-4.1 judged; replacement QA set

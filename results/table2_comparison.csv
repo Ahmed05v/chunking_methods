@@ -1,0 +1,9 @@
+method,our_chunks,paper_chunks,our_mean_tokens,our_max_tokens,our_min_tokens,our_std_tokens,coverage_docs,note
+"Page, post-processed",1780,1780,663.2,1146,72,234.8,33,
+"Our recursive (1100), post-processed",1345,1345,878.0,1141,104,216.8,33,
+"Our recursive (600), post-processed",2381,2381,496.3,691,102,101.4,33,
+LLM regex (local heading-based approximation),2270,2279,520.2,1146,69,328.1,33,LLM regex is deterministic local heuristic; semantic uses local Qwen
+"LangChain recursive (1100), raw",1675,1675,705.6,1101,2,324.0,33,
+"LangChain recursive (default), raw",1557,1557,772.7,1364,57,128.5,33,
+Semantic (local Qwen model),1706,1706,692.5,17146,1,1094.4,33,LLM regex is deterministic local heuristic; semantic uses local Qwen
+"Sentence, raw",8498,8125,139.4,1024,4,65.4,33,

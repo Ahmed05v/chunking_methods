@@ -501,7 +501,10 @@ def show_chunking_overall_metametrics(
         print(f"Could not read metrics parquet '{df_metrics_path}': {e}")
         return
 
-    metrics_df = metrics_df[metrics_df["chunking_method"].isin(chunking_methods)]
+    metrics_df = metrics_df[
+        metrics_df["chunking_method"].isin(chunking_methods)
+        & ~metrics_df["metric_name"].astype(str).str.endswith("_lexical_proxy")
+    ]
 
     # Determine best method per doc
     best_method_per_doc: dict[str, str] = {}
@@ -601,7 +604,10 @@ def show_chunking_overall_report(
         return
 
     # Keep only the requested chunking methods
-    df = df[df["chunking_method"].isin(chunking_methods)]
+    df = df[
+        df["chunking_method"].isin(chunking_methods)
+        & ~df["metric_name"].astype(str).str.endswith("_lexical_proxy")
+    ]
 
     # Compute *best* method per-document
     best_metrics_per_doc: list[pd.Series] = []
@@ -775,7 +781,8 @@ def plot_metric_correlations(
     metrics: list[str],
     chunking_methods: list[str],
     figsize=(6, 12),
-    cmap="seismic"):
+    cmap="seismic",
+    save_path: str | Path | None = None):
     """
     Plot correlation heatmaps (Pearson, Kendall, Spearman) for selected chunking metrics.
 
@@ -819,7 +826,8 @@ def plot_metric_correlations(
     spearman = df_for_corr.corr(method="spearman")
 
     for m in (pearson, kendall, spearman):
-        np.fill_diagonal(m.values, np.nan)
+        for idx in range(min(m.shape)):
+            m.iat[idx, idx] = np.nan
 
     masks = {
         "pearson": np.triu(np.ones_like(pearson, dtype=bool), k=0),
@@ -881,4 +889,11 @@ def plot_metric_correlations(
     axes[2].set_yticklabels(axes[2].get_yticklabels(), rotation=0)
 
     plt.tight_layout()
-    plt.show()
+    if save_path is not None:
+        save_path = Path(save_path)
+        save_path.parent.mkdir(parents=True, exist_ok=True)
+        fig.savefig(save_path, dpi=200, bbox_inches="tight")
+        plt.close(fig)
+        print(f"Correlation figure saved to: {save_path}")
+    else:
+        plt.show()

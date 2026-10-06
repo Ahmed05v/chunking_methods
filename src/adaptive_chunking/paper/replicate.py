@@ -145,6 +145,10 @@ async def run_chunking(
     openai_model: str = "gpt-4o",
     skip_llm_regex: bool = False,
     skip_semantic: bool = False,
+    semantic_model: str = "Qwen/Qwen3-Embedding-0.6B",
+    attention_implementation: str = "sdpa",
+    only_methods: set[str] | None = None,
+    approximate_llm_regex: bool = False,
 ):
     """Split all documents using 8 methods, then postprocess."""
     from ..splitters import RecursiveSplitter
@@ -163,66 +167,73 @@ async def run_chunking(
 
     # -- Build splitters --
     sync_splitters: dict = {}
+    wanted = lambda method: only_methods is None or method in only_methods
 
     # page
-    sync_splitters["page"] = None  # handled specially in split_documents_from_dir
+    if wanted("page"):
+        sync_splitters["page"] = None  # handled specially in split_documents_from_dir
 
     # sentence (stanza, 5 per chunk)
-    from .splitters import SentenceSplitter
-    sync_splitters["sentence"] = SentenceSplitter(
-        method="stanza", sentences_per_chunk=5, device=device,
-    )
+    if wanted("sentence"):
+        from .splitters import SentenceSplitter
+        sync_splitters["sentence"] = SentenceSplitter(
+            method="stanza", sentences_per_chunk=5, device=device,
+        )
 
     # langchain recursive default
     from langchain_text_splitters import RecursiveCharacterTextSplitter
-    sync_splitters["langch_recurs_default"] = RecursiveCharacterTextSplitter()
+    if wanted("langch_recurs_default"):
+        sync_splitters["langch_recurs_default"] = RecursiveCharacterTextSplitter()
 
     # langchain recursive 1100
-    sync_splitters["langch_recurs_1100"] = RecursiveCharacterTextSplitter(
-        separators=SEPARATORS,
-        chunk_size=1100,
-        chunk_overlap=0,
-        is_separator_regex=True,
-        keep_separator="start",
-        length_function=count_tokens_func,
-    )
+    if wanted("langch_recurs_1100"):
+        sync_splitters["langch_recurs_1100"] = RecursiveCharacterTextSplitter(
+            separators=SEPARATORS,
+            chunk_size=1100,
+            chunk_overlap=0,
+            is_separator_regex=True,
+            keep_separator="start",
+            length_function=count_tokens_func,
+        )
 
     # our recursive 1100
-    sync_splitters["our_recurs_1100"] = RecursiveSplitter(
-        separators=SEPARATORS,
-        chunk_size=1100,
-        chunk_overlap=0,
-        is_separator_regex=True,
-        attach_separator_to="start",
-        length_function=count_tokens_func,
-        merging="to_chunk_size",
-        merging_order="forward",
-    )
+    if wanted("our_recurs_1100"):
+        sync_splitters["our_recurs_1100"] = RecursiveSplitter(
+            separators=SEPARATORS,
+            chunk_size=1100,
+            chunk_overlap=0,
+            is_separator_regex=True,
+            attach_separator_to="start",
+            length_function=count_tokens_func,
+            merging="to_chunk_size",
+            merging_order="forward",
+        )
 
     # our recursive 600
-    sync_splitters["our_recurs_600"] = RecursiveSplitter(
-        separators=SEPARATORS,
-        chunk_size=600,
-        chunk_overlap=0,
-        is_separator_regex=True,
-        attach_separator_to="start",
-        length_function=count_tokens_func,
-        merging="to_chunk_size",
-        merging_order="forward",
-    )
+    if wanted("our_recurs_600"):
+        sync_splitters["our_recurs_600"] = RecursiveSplitter(
+            separators=SEPARATORS,
+            chunk_size=600,
+            chunk_overlap=0,
+            is_separator_regex=True,
+            attach_separator_to="start",
+            length_function=count_tokens_func,
+            merging="to_chunk_size",
+            merging_order="forward",
+        )
 
     # semantic chunker
-    if not skip_semantic:
+    if not skip_semantic and wanted("semantic"):
         import torch
         from langchain_community.embeddings import HuggingFaceEmbeddings
         from .splitters import SemanticChunkerWrapper
 
         embeddings = HuggingFaceEmbeddings(
-            model_name="Qwen/Qwen3-Embedding-0.6B",
+            model_name=semantic_model,
             model_kwargs={
                 "device": device,
                 "model_kwargs": {
-                    "attn_implementation": "flash_attention_2",
+                    "attn_implementation": attention_implementation,
                     "torch_dtype": torch.bfloat16,
                 },
                 "tokenizer_kwargs": {"padding_side": "left"},
@@ -236,26 +247,46 @@ async def run_chunking(
 
     # LLM regex (async, requires OpenAI key)
     async_splitters: dict = {}
-    if not skip_llm_regex:
-        import openai
-        from .splitters import LLMRegexSplitter
+    if not skip_llm_regex and wanted("llm_regex"):
+        if approximate_llm_regex:
+            from ..splitters import regex_splitter
 
-        client = openai.AsyncOpenAI()
+            class LocalRegexApproximation:
+                """Local structural approximation of the paper's LLM regex chunker."""
 
-        async def _llm_completion(prompt: str) -> str:
-            resp = await client.chat.completions.create(
-                model=openai_model,
-                messages=[{"role": "user", "content": prompt}],
-                temperature=0,
+                async def split_text(self, text: str) -> list[str]:
+                    pattern = (
+                        r"(?m)(?=^#{1,6}\s+\S|"
+                        r"^(?:Article|ARTICLE|Chapter|CHAPTER|Section|SECTION|Part|PART)"
+                        r"\s+[0-9IVXLC]+\b)"
+                    )
+                    return regex_splitter(text, pattern, attach_to="start")
+
+            async_splitters["llm_regex"] = LocalRegexApproximation()
+            print("Using local heading-based approximation for llm_regex (not an LLM result).")
+        else:
+            import openai
+            from .splitters import LLMRegexSplitter
+
+            client = openai.AsyncOpenAI()
+
+            async def _llm_completion(prompt: str) -> str:
+                resp = await client.chat.completions.create(
+                    model=openai_model,
+                    messages=[{"role": "user", "content": prompt}],
+                    temperature=0,
+                )
+                return resp.choices[0].message.content
+
+            async_splitters["llm_regex"] = LLMRegexSplitter(
+                base_prompt=_build_few_shot_prompt(),
+                async_client_completion_func=_llm_completion,
+                count_tokens_func=count_tokens_func,
+                context_tokens=8000,
             )
-            return resp.choices[0].message.content
 
-        async_splitters["llm_regex"] = LLMRegexSplitter(
-            base_prompt=_build_few_shot_prompt(),
-            async_client_completion_func=_llm_completion,
-            count_tokens_func=count_tokens_func,
-            context_tokens=8000,
-        )
+    if not sync_splitters and not async_splitters:
+        raise ValueError("No chunking methods selected after applying skip flags.")
 
     # -- Run chunking --
     print("\n=== Step 1a: Chunking (raw) ===\n")
@@ -266,7 +297,7 @@ async def run_chunking(
         output_dir=raw_dir,
         count_tokens_func=count_tokens_func,
         skip_non_english=False,
-        replace_all_results=True,
+        replace_all_results=only_methods is None,
     )
 
     # -- Postprocessing: split oversized --
@@ -284,11 +315,9 @@ async def run_chunking(
         chunks, oversized_splitter, count_tokens_func, max_chunk_tokens=1100,
     )
 
-    methods_to_regularize = {"page", "sentence", "semantic", "llm_regex"}
-    if skip_semantic:
-        methods_to_regularize.discard("semantic")
-    if skip_llm_regex:
-        methods_to_regularize.discard("llm_regex")
+    methods_to_regularize = {"page", "sentence", "semantic", "llm_regex"} & (
+        set(sync_splitters) | set(async_splitters)
+    )
 
     split_oversized_chunks_from_df(
         parsed_docs_dir=parsed_docs_dir,
@@ -297,7 +326,7 @@ async def run_chunking(
         methods_to_be_regularized=methods_to_regularize,
         split_oversized_func=split_oversized_func,
         count_tokens_func=count_tokens_func,
-        replace_all_results=True,
+        replace_all_results=only_methods is None,
     )
 
     # -- Postprocessing: merge small chunks --
@@ -314,7 +343,7 @@ async def run_chunking(
         methods_to_be_regularized=all_methods,
         merge_small_chunks_func=merge_func,
         count_tokens_func=count_tokens_func,
-        replace_all_results=True,
+        replace_all_results=only_methods is None,
     )
 
     print("\nChunking complete. Results saved to:", output_dir / "chunks")
@@ -362,7 +391,41 @@ def _make_embedder(device: str = "cpu"):
     from sentence_transformers import SentenceTransformer
     print("Loading jinaai/jina-embeddings-v3 locally (set JINA_API_KEY to use the API instead) ...")
     m = SentenceTransformer("jinaai/jina-embeddings-v3", trust_remote_code=True)
-    return m.to(device)
+    m = m.to(device)
+    pause_seconds = float(os.environ.get("ADAPTIVE_CHUNKING_EMBED_PAUSE_SECONDS", "0"))
+    if pause_seconds > 0:
+        import time
+
+        class PacedEmbedder:
+            """Small GPU batches with idle gaps to reduce sustained utilization."""
+
+            def __init__(self, model, pause: float, max_batch_size: int = 4):
+                self.model = model
+                self.pause = pause
+                self.max_batch_size = max_batch_size
+
+            def encode(self, sentences, **kwargs):
+                import numpy as np
+
+                items = [sentences] if isinstance(sentences, str) else list(sentences)
+                if not items:
+                    return np.empty((0, 0), dtype=np.float32)
+                requested_batch = int(kwargs.get("batch_size", self.max_batch_size))
+                micro_batch = max(1, min(requested_batch, self.max_batch_size))
+                kwargs["batch_size"] = micro_batch
+                encoded = []
+                for start in range(0, len(items), micro_batch):
+                    encoded.append(self.model.encode(items[start:start + micro_batch], **kwargs))
+                    if start + micro_batch < len(items):
+                        time.sleep(self.pause)
+                return np.concatenate(encoded, axis=0)
+
+        print(
+            f"GPU pacing enabled: batches up to 4 with "
+            f"{pause_seconds:.2f}s pauses between batches."
+        )
+        return PacedEmbedder(m, pause_seconds)
+    return m
 
 
 def _resolve_mentions_dir(data_dir: Path, output_dir: Path) -> Path:
@@ -407,7 +470,7 @@ def run_metrics(data_dir: Path, output_dir: Path, device: str = "cpu", batch_siz
 # ---------------------------------------------------------------------------
 
 # Methods shown without post-processing in paper Table 3 (marked with †)
-_DAGGER_METHODS = {"page", "sentence", "semantic", "langch_recurs_1100", "langch_recurs_default"}
+_DAGGER_METHODS = {"page", "sentence", "semantic", "langch_recurs_1100", "langch_recurs_default", "llm_regex"}
 
 
 def run_raw_metrics(data_dir: Path, output_dir: Path, device: str = "cpu", batch_size: int = 32):
@@ -485,6 +548,7 @@ def run_analysis(output_dir: Path, methods: list[str] | None = None):
         df_path=metrics_path,
         metrics=METRICS,
         chunking_methods=methods,
+        save_path=output_dir / "figure1_metric_correlations.png",
     )
 
 
@@ -525,11 +589,11 @@ _TABLE3_DISPLAY_NAMES = {
     "our_recurs_1100":       "our recursive (s=1100)",
     "our_recurs_600":        "our recursive (s=600)",
     "page":                  "page (post-processed)",
-    "llm_regex":             "LLM regex",
+    "llm_regex":             "LLM regex (local heading-based approximation)",
     "langch_recurs_1100":    "LC recursive (s=1100)",
     "langch_recurs_default": "LC recursive (default)",
     "page_raw":              "page (raw)",
-    "semantic":              "semantic",
+    "semantic":              "semantic (local model approximation)",
     "sentence":              "sentence",
 }
 
@@ -584,7 +648,7 @@ def run_table3(output_dir: Path):
             pending.append(key)
             continue
 
-        sub = df[df["chunking_method"] == col]
+        sub = df[(df["chunking_method"] == col) & (~df["metric_name"].astype(str).str.endswith("_lexical_proxy"))]
         if sub.empty:
             rows.append([display, tag] + ["N/A"] * 5 + ["—", f"{paper_mean:.2f}", "pending"])
             pending.append(key)
@@ -593,20 +657,28 @@ def run_table3(output_dir: Path):
         agg = sub.groupby("metric_name")["score"].agg(["mean", "std"])
         cells = []
         our_mean = 0.0
+        metric_counts = sub.groupby("metric_name")["score"].count()
         for m in _TABLE3_METRICS:
             mv = agg["mean"].get(m, np.nan) * 100
             sv = agg["std"].get(m, np.nan) * 100
             cells.append(f"{mv:.1f}±{sv:.1f}" if not np.isnan(mv) else "N/A")
             our_mean += (agg["mean"].get(m, np.nan) * 100) / len(_TABLE3_METRICS)
 
-        delta = our_mean - paper_mean
-        rows.append([display, tag] + cells + [f"{our_mean:.2f}", f"{paper_mean:.2f}", f"{delta:+.2f}%"])
+        if any(metric_counts.get(m, 0) < 30 for m in _TABLE3_METRICS):
+            rows.append([display, tag] + cells + ["insufficient coverage", f"{paper_mean:.2f}", "N/A"])
+        else:
+            delta = our_mean - paper_mean
+            rows.append([display, tag] + cells + [f"{our_mean:.2f}", f"{paper_mean:.2f}", f"{delta:+.2f}%"])
 
     print("=" * 110)
-    print("PAPER TABLE 3 REPRODUCTION — all scores computed locally")
+    print("PAPER TABLE 3 COMPARISON — available scores computed locally")
     print("  * = post-processed (small_merged)   † = no postprocessing (raw)")
+    print("  LLM regex and semantic rows use local approximations, not the paper's GPT-5/model outputs.")
     print("=" * 110)
     print(tabulate(rows, headers=headers, tablefmt="simple"))
+    comparison_path = output_dir / "table3_comparison.csv"
+    pd.DataFrame(rows, columns=headers).to_csv(comparison_path, index=False, encoding="utf-8-sig")
+    print(f"\n  Comparison saved to: {comparison_path}")
 
     if pending:
         missing_steps = []
@@ -615,9 +687,21 @@ def run_table3(output_dir: Path):
         if any(source[k][0] == raw_path for k in pending):
             missing_steps.append("raw_metrics")
         print(f"\n  Pending methods: {[_TABLE3_DISPLAY_NAMES[k] for k in pending]}")
-        print(f"  Run missing steps first: --steps {' '.join(missing_steps)}")
+        print(f"  Missing methods may need their chunking stage, followed by: --steps {' '.join(missing_steps)}")
     else:
-        print("\n  All methods computed locally.")
+        incomplete = []
+        for key in _TABLE3_DISPLAY_ORDER:
+            src_path, method = source[key]
+            frame = dfs.get(src_path)
+            if frame is None:
+                continue
+            sub = frame[frame["chunking_method"] == method]
+            if any(sub.loc[sub.metric_name == metric, "score"].count() < 30 for metric in _TABLE3_METRICS):
+                incomplete.append(_TABLE3_DISPLAY_NAMES[key])
+        if incomplete:
+            print(f"\n  Embedding metrics still need computation: {incomplete}")
+        else:
+            print("\n  All displayed metrics have sufficient local coverage.")
 
 
 # ---------------------------------------------------------------------------
@@ -630,8 +714,14 @@ async def run_rag(
     device: str = "cpu",
     openai_model: str = "gpt-4.1",
     batch_size: int = 16,
+    reuse_qa: bool = False,
+    retrieval_only: bool = False,
+    embedding_model: str = "Qwen/Qwen3-Embedding-4B",
+    reranker_model: str = "Snowflake/snowflake-arctic-embed-l-v2.0",
+    attention_implementation: str = "sdpa",
 ):
     """Run the full RAG pipeline: QA generation, indexing, retrieval, generation, evaluation."""
+    os.environ.setdefault("HAYSTACK_TELEMETRY_ENABLED", "false")
     import openai
     from .rag_utils import (
         generate_qa_pairs,
@@ -652,6 +742,7 @@ async def run_rag(
 
     parsed_docs_dir = data_dir / "adi_parsed"
     chunks_path = output_dir / "chunks" / "small_merged" / "chunks.parquet"
+    raw_chunks_path = output_dir / "chunks" / "raw" / "chunks.parquet"
     metrics_path = output_dir / "results" / "chunking_metrics.parquet"
     rag_dir = output_dir / "rag"
 
@@ -669,17 +760,15 @@ async def run_rag(
     langch_chunks_dir = rag_dir / "chunks" / "langch_recurs_default"
     page_chunks_dir = rag_dir / "chunks" / "page"
     output_selected_chunks(
-        chunks_df_paths={"small_merged": chunks_path},
+        chunks_df_paths={"raw": raw_chunks_path},
         selection=[
-            {"chunks_df": "small_merged", "chunking_method": "langch_recurs_default", "output_dir": langch_chunks_dir},
-            {"chunks_df": "small_merged", "chunking_method": "page", "output_dir": page_chunks_dir},
+            {"chunks_df": "raw", "chunking_method": "langch_recurs_default", "output_dir": langch_chunks_dir},
+            {"chunks_df": "raw", "chunking_method": "page", "output_dir": page_chunks_dir},
         ],
     )
 
     # 5b: Generate QA pairs
     print("\n--- 5b: Generating QA pairs ---")
-    client = openai.AsyncOpenAI()
-
     qa_generation_prompt = """You are a domain expert creating evaluation questions for a retrieval-augmented generation system.
 Given the following document excerpt, generate {qa_pairs_per_document} diverse question-answer pairs that:
 - Test understanding of key concepts, facts, and relationships in the document
@@ -701,14 +790,21 @@ Generate the question-answer pairs."""
         return resp
 
     qa_dir = rag_dir / "queries"
-    await generate_qa_pairs(
-        parsed_docs_dir=parsed_docs_dir,
-        outputs_dir=qa_dir,
-        client_completion_func=_qa_completion,
-        qa_generation_prompt=qa_generation_prompt,
-        qa_pairs_per_document=3,
-        max_context_tokens=10000,
-    )
+    qa_path = qa_dir / "generated_qa_pairs.json"
+    if reuse_qa:
+        if not qa_path.is_file():
+            raise FileNotFoundError(f"Cannot reuse QA pairs: {qa_path} does not exist")
+        print(f"Using existing QA pairs from {qa_path}")
+    else:
+        client = openai.AsyncOpenAI()
+        await generate_qa_pairs(
+            parsed_docs_dir=parsed_docs_dir,
+            outputs_dir=qa_dir,
+            client_completion_func=_qa_completion,
+            qa_generation_prompt=qa_generation_prompt,
+            qa_pairs_per_document=3,
+            max_context_tokens=10000,
+        )
 
     # 5c: Index and retrieve for each method
     rag_methods = {
@@ -726,15 +822,19 @@ Generate the question-answer pairs."""
         index_documents(
             documents=docs,
             output_dir=method_rag_dir,
-            embedding_model_name="Qwen/Qwen3-Embedding-4B",
+            embedding_model_name=embedding_model,
+            embedder_config_kwargs={"attn_implementation": attention_implementation},
             device=device,
             batch_size=batch_size,
         )
 
         retrieval_pipeline = create_retrieval_pipeline(
             document_store_path=method_rag_dir / "document_store.json",
-            embedding_model="Qwen/Qwen3-Embedding-4B",
-            reranker_model="Snowflake/snowflake-arctic-embed-l-v2.0",
+            embedding_model=embedding_model,
+            embedder_config_kwargs={"attn_implementation": attention_implementation},
+            reranker_model=reranker_model,
+            embedder_batch_size=batch_size,
+            reranker_batch_size=batch_size,
             device=device,
         )
 
@@ -743,6 +843,12 @@ Generate the question-answer pairs."""
             output_dir=method_rag_dir,
             retrieval_pipeline=retrieval_pipeline,
         )
+
+    if retrieval_only:
+        print("\nRetrieval complete. Answer generation and evaluation were skipped.")
+        return
+
+    client = openai.AsyncOpenAI()
 
     # 5d: Generate answers
     qa_prompt = """You are a helpful assistant. Answer the question based ONLY on the provided context.
@@ -831,12 +937,44 @@ def main():
         help="Skip the LLM regex splitter (requires OpenAI API key).",
     )
     parser.add_argument(
+        "--approximate-llm-regex", action="store_true",
+        help="Use a local heading-based regex approximation instead of calling an LLM.",
+    )
+    parser.add_argument(
         "--skip-semantic", action="store_true",
         help="Skip the semantic chunker (requires GPU + flash_attention_2).",
     )
     parser.add_argument(
         "--batch-size", type=int, default=32,
         help="Batch size for embedding computations (default: 32).",
+    )
+    parser.add_argument(
+        "--reuse-qa", action="store_true",
+        help="Use results/rag/queries/generated_qa_pairs.json during the rag step instead of generating new questions.",
+    )
+    parser.add_argument(
+        "--retrieval-only", action="store_true",
+        help="Run RAG chunk selection, indexing, and retrieval without answer generation or LLM evaluation.",
+    )
+    parser.add_argument(
+        "--embedding-model", default="Qwen/Qwen3-Embedding-4B",
+        help="RAG embedding model ID or local model directory.",
+    )
+    parser.add_argument(
+        "--reranker-model", default="Snowflake/snowflake-arctic-embed-l-v2.0",
+        help="RAG reranker model ID or local model directory.",
+    )
+    parser.add_argument(
+        "--attention-implementation", choices=["sdpa", "flash_attention_2"], default="sdpa",
+        help="Attention implementation for Qwen embedding models (default: sdpa, supported on Windows).",
+    )
+    parser.add_argument(
+        "--semantic-model", default="Qwen/Qwen3-Embedding-0.6B",
+        help="Semantic chunker model ID or local model directory.",
+    )
+    parser.add_argument(
+        "--only-methods", nargs="+", choices=CHUNKING_METHODS,
+        help="Run only the selected chunking methods during the chunking step.",
     )
 
     args = parser.parse_args()
@@ -850,6 +988,10 @@ def main():
             device=args.device,
             skip_llm_regex=args.skip_llm_regex,
             skip_semantic=args.skip_semantic,
+            semantic_model=args.semantic_model,
+            attention_implementation=args.attention_implementation,
+            only_methods=set(args.only_methods) if args.only_methods else None,
+            approximate_llm_regex=args.approximate_llm_regex,
         ))
 
     if run_all or "mentions" in steps:
@@ -882,6 +1024,12 @@ def main():
             data_dir=args.data_dir,
             output_dir=args.output_dir,
             device=args.device,
+            batch_size=args.batch_size,
+            reuse_qa=args.reuse_qa,
+            retrieval_only=args.retrieval_only,
+            embedding_model=args.embedding_model,
+            reranker_model=args.reranker_model,
+            attention_implementation=args.attention_implementation,
         ))
 
 
