@@ -1,0 +1,1070 @@
+{
+  "description": "Eleven Arabic Wikipedia article collections for a chunking pilot; not natural single-source documents.",
+  "license": "Arabic Wikipedia text is CC BY-SA 4.0; attribution URLs and revision IDs are listed per document.",
+  "page_note": "Pages are synthetic ~2,000-token paragraph groups; split_points are paragraph boundaries.",
+  "documents": [
+    {
+      "name": "tech_01_ai",
+      "domain": "technology",
+      "target_tokens": 5257,
+      "tokens_o200k_base": 5084,
+      "synthetic_pages": 3,
+      "source_articles": [
+        {
+          "pageid": 3947,
+          "title": "ذكاء اصطناعي",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B0%D9%83%D8%A7%D8%A1_%D8%A7%D8%B5%D8%B7%D9%86%D8%A7%D8%B9%D9%8A",
+          "revision": 76840065
+        }
+      ],
+      "source_count": 1,
+      "arabic_character_fraction": 0.812
+    },
+    {
+      "name": "tech_02_cyber",
+      "domain": "technology",
+      "target_tokens": 5257,
+      "tokens_o200k_base": 4807,
+      "synthetic_pages": 3,
+      "source_articles": [
+        {
+          "pageid": 232694,
+          "title": "أمن الحاسوب",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A3%D9%85%D9%86_%D8%A7%D9%84%D8%AD%D8%A7%D8%B3%D9%88%D8%A8",
+          "revision": 76535733
+        }
+      ],
+      "source_count": 1,
+      "arabic_character_fraction": 0.804
+    },
+    {
+      "name": "tech_03_digital",
+      "domain": "technology",
+      "target_tokens": 5257,
+      "tokens_o200k_base": 4639,
+      "synthetic_pages": 3,
+      "source_articles": [
+        {
+          "pageid": 3602300,
+          "title": "تحول رقمي",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%AD%D9%88%D9%84_%D8%B1%D9%82%D9%85%D9%8A",
+          "revision": 76078263
+        },
+        {
+          "pageid": 9326426,
+          "title": "تحول تلفزيوني رقمي",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%AD%D9%88%D9%84_%D8%AA%D9%84%D9%81%D8%B2%D9%8A%D9%88%D9%86%D9%8A_%D8%B1%D9%82%D9%85%D9%8A",
+          "revision": 75015318
+        }
+      ],
+      "source_count": 2,
+      "arabic_character_fraction": 0.81
+    },
+    {
+      "name": "legal_01_privacy",
+      "domain": "legal",
+      "target_tokens": 30895,
+      "tokens_o200k_base": 30844,
+      "synthetic_pages": 17,
+      "source_articles": [
+        {
+          "pageid": 7567158,
+          "title": "مشرف حماية البيانات الأوروبي",
+          "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%B4%D8%B1%D9%81_%D8%AD%D9%85%D8%A7%D9%8A%D8%A9_%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA_%D8%A7%D9%84%D8%A3%D9%88%D8%B1%D9%88%D8%A8%D9%8A",
+          "revision": 75433540
+        },
+        {
+          "pageid": 7732633,
+          "title": "قانون حماية البيانات الشخصية العام",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%AD%D9%85%D8%A7%D9%8A%D8%A9_%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA_%D8%A7%D9%84%D8%B4%D8%AE%D8%B5%D9%8A%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85",
+          "revision": 75620512
+        },
+        {
+          "pageid": 8770586,
+          "title": "إدارة مركز البيانات",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9_%D9%85%D8%B1%D9%83%D8%B2_%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA",
+          "revision": 76019349
+        },
+        {
+          "pageid": 6310440,
+          "title": "تعمية قواعد البيانات",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%85%D9%8A%D8%A9_%D9%82%D9%88%D8%A7%D8%B9%D8%AF_%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA",
+          "revision": 76791820
+        },
+        {
+          "pageid": 1810306,
+          "title": "وسائط نقل البيانات",
+          "url": "https://ar.wikipedia.org/wiki/%D9%88%D8%B3%D8%A7%D8%A6%D8%B7_%D9%86%D9%82%D9%84_%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA",
+          "revision": 68099287
+        },
+        {
+          "pageid": 87805,
+          "title": "زنا المحارم",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B2%D9%86%D8%A7_%D8%A7%D9%84%D9%85%D8%AD%D8%A7%D8%B1%D9%85",
+          "revision": 75199255
+        },
+        {
+          "pageid": 1487621,
+          "title": "معيار تعمية البيانات",
+          "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%B9%D9%8A%D8%A7%D8%B1_%D8%AA%D8%B9%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA",
+          "revision": 75437651
+        },
+        {
+          "pageid": 9187963,
+          "title": "مقايسة حماية النوكلياز",
+          "url": "https://ar.wikipedia.org/wiki/%D9%85%D9%82%D8%A7%D9%8A%D8%B3%D8%A9_%D8%AD%D9%85%D8%A7%D9%8A%D8%A9_%D8%A7%D9%84%D9%86%D9%88%D9%83%D9%84%D9%8A%D8%A7%D8%B2",
+          "revision": 76294640
+        },
+        {
+          "pageid": 9160771,
+          "title": "أمان مراكز البيانات",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A3%D9%85%D8%A7%D9%86_%D9%85%D8%B1%D8%A7%D9%83%D8%B2_%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA",
+          "revision": 69329413
+        },
+        {
+          "pageid": 8970487,
+          "title": "قاعدة البيانات الحكومية",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D8%B9%D8%AF%D8%A9_%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA_%D8%A7%D9%84%D8%AD%D9%83%D9%88%D9%85%D9%8A%D8%A9",
+          "revision": 62724573
+        },
+        {
+          "pageid": 1004543,
+          "title": "ذا منتاليست",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B0%D8%A7_%D9%85%D9%86%D8%AA%D8%A7%D9%84%D9%8A%D8%B3%D8%AA",
+          "revision": 76606310
+        },
+        {
+          "pageid": 6362724,
+          "title": "تجميع البيانات",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%AC%D9%85%D9%8A%D8%B9_%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA",
+          "revision": 75713959
+        },
+        {
+          "pageid": 6529447,
+          "title": "حوكمة البيانات",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AD%D9%88%D9%83%D9%85%D8%A9_%D8%A7%D9%84%D8%A8%D9%8A%D8%A7%D9%86%D8%A7%D8%AA",
+          "revision": 76771756
+        }
+      ],
+      "source_count": 13,
+      "arabic_character_fraction": 0.788
+    },
+    {
+      "name": "legal_02_constitution",
+      "domain": "legal",
+      "target_tokens": 30895,
+      "tokens_o200k_base": 30765,
+      "synthetic_pages": 19,
+      "source_articles": [
+        {
+          "pageid": 4521,
+          "title": "دستور",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AF%D8%B3%D8%AA%D9%88%D8%B1",
+          "revision": 76813302
+        },
+        {
+          "pageid": 1925749,
+          "title": "دستور تونس 2014",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AF%D8%B3%D8%AA%D9%88%D8%B1_%D8%AA%D9%88%D9%86%D8%B3_2014",
+          "revision": 70993850
+        },
+        {
+          "pageid": 10134048,
+          "title": "دستور السنة الثامنة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AF%D8%B3%D8%AA%D9%88%D8%B1_%D8%A7%D9%84%D8%B3%D9%86%D8%A9_%D8%A7%D9%84%D8%AB%D8%A7%D9%85%D9%86%D8%A9",
+          "revision": 76813350
+        },
+        {
+          "pageid": 45542,
+          "title": "دستور سوريا",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AF%D8%B3%D8%AA%D9%88%D8%B1_%D8%B3%D9%88%D8%B1%D9%8A%D8%A7",
+          "revision": 75632130
+        },
+        {
+          "pageid": 33254,
+          "title": "قائمة رؤساء مصر",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D8%A6%D9%85%D8%A9_%D8%B1%D8%A4%D8%B3%D8%A7%D8%A1_%D9%85%D8%B5%D8%B1",
+          "revision": 76668879
+        },
+        {
+          "pageid": 9213138,
+          "title": "دستور أرض البنط",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AF%D8%B3%D8%AA%D9%88%D8%B1_%D8%A3%D8%B1%D8%B6_%D8%A7%D9%84%D8%A8%D9%86%D8%B7",
+          "revision": 73579919
+        },
+        {
+          "pageid": 9819530,
+          "title": "دستور الاتحاد السوفيتي",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AF%D8%B3%D8%AA%D9%88%D8%B1_%D8%A7%D9%84%D8%A7%D8%AA%D8%AD%D8%A7%D8%AF_%D8%A7%D9%84%D8%B3%D9%88%D9%81%D9%8A%D8%AA%D9%8A",
+          "revision": 74336871
+        },
+        {
+          "pageid": 254808,
+          "title": "ملكية دستورية",
+          "url": "https://ar.wikipedia.org/wiki/%D9%85%D9%84%D9%83%D9%8A%D8%A9_%D8%AF%D8%B3%D8%AA%D9%88%D8%B1%D9%8A%D8%A9",
+          "revision": 71692311
+        },
+        {
+          "pageid": 10241295,
+          "title": "دستور السودان 1973",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AF%D8%B3%D8%AA%D9%88%D8%B1_%D8%A7%D9%84%D8%B3%D9%88%D8%AF%D8%A7%D9%86_1973",
+          "revision": 76813431
+        },
+        {
+          "pageid": 1418479,
+          "title": "دستور اليمن",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AF%D8%B3%D8%AA%D9%88%D8%B1_%D8%A7%D9%84%D9%8A%D9%85%D9%86",
+          "revision": 76813409
+        },
+        {
+          "pageid": 10447934,
+          "title": "دستور سوريا 1953",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AF%D8%B3%D8%AA%D9%88%D8%B1_%D8%B3%D9%88%D8%B1%D9%8A%D8%A7_1953",
+          "revision": 76490624
+        },
+        {
+          "pageid": 1207388,
+          "title": "دستور المغرب",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AF%D8%B3%D8%AA%D9%88%D8%B1_%D8%A7%D9%84%D9%85%D8%BA%D8%B1%D8%A8",
+          "revision": 76836492
+        }
+      ],
+      "source_count": 12,
+      "arabic_character_fraction": 0.795
+    },
+    {
+      "name": "legal_03_civil",
+      "domain": "legal",
+      "target_tokens": 30895,
+      "tokens_o200k_base": 30832,
+      "synthetic_pages": 19,
+      "source_articles": [
+        {
+          "pageid": 4214,
+          "title": "قانون",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86",
+          "revision": 75213913
+        },
+        {
+          "pageid": 7074836,
+          "title": "قانون مدني موحد",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D9%85%D8%AF%D9%86%D9%8A_%D9%85%D9%88%D8%AD%D8%AF",
+          "revision": 75540116
+        },
+        {
+          "pageid": 7426247,
+          "title": "قانون اشتراكي",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D8%B4%D8%AA%D8%B1%D8%A7%D9%83%D9%8A",
+          "revision": 69759878
+        },
+        {
+          "pageid": 7270967,
+          "title": "القانون المدني المصري",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A_%D8%A7%D9%84%D9%85%D8%B5%D8%B1%D9%8A",
+          "revision": 76265366
+        },
+        {
+          "pageid": 9858393,
+          "title": "القانون المدني (بلجيكا)",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D9%84%D9%85%D8%AF%D9%86%D9%8A_(%D8%A8%D9%84%D8%AC%D9%8A%D9%83%D8%A7)",
+          "revision": 71534348
+        },
+        {
+          "pageid": 513547,
+          "title": "قانون مدني (نظام قانوني)",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D9%85%D8%AF%D9%86%D9%8A_(%D9%86%D8%B8%D8%A7%D9%85_%D9%82%D8%A7%D9%86%D9%88%D9%86%D9%8A)",
+          "revision": 75303296
+        },
+        {
+          "pageid": 1415664,
+          "title": "مدونة مدنية",
+          "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%AF%D9%88%D9%86%D8%A9_%D9%85%D8%AF%D9%86%D9%8A%D8%A9",
+          "revision": 75429229
+        },
+        {
+          "pageid": 6534970,
+          "title": "غيث التميمي",
+          "url": "https://ar.wikipedia.org/wiki/%D8%BA%D9%8A%D8%AB_%D8%A7%D9%84%D8%AA%D9%85%D9%8A%D9%85%D9%8A",
+          "revision": 74557296
+        },
+        {
+          "pageid": 10480038,
+          "title": "قانون إجرائي",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A5%D8%AC%D8%B1%D8%A7%D8%A6%D9%8A",
+          "revision": 76681634
+        },
+        {
+          "pageid": 310650,
+          "title": "قانون جنائي",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%AC%D9%86%D8%A7%D8%A6%D9%8A",
+          "revision": 76347732
+        },
+        {
+          "pageid": 9551018,
+          "title": "قانون الالتزامات",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D9%84%D8%A7%D9%84%D8%AA%D8%B2%D8%A7%D9%85%D8%A7%D8%AA",
+          "revision": 71505096
+        },
+        {
+          "pageid": 9847083,
+          "title": "الشرعية (قانون الأسرة)",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%B4%D8%B1%D8%B9%D9%8A%D8%A9_(%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D9%84%D8%A3%D8%B3%D8%B1%D8%A9)",
+          "revision": 76585530
+        },
+        {
+          "pageid": 235974,
+          "title": "عقد (قانون)",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B9%D9%82%D8%AF_(%D9%82%D8%A7%D9%86%D9%88%D9%86)",
+          "revision": 75252414
+        }
+      ],
+      "source_count": 13,
+      "arabic_character_fraction": 0.792
+    },
+    {
+      "name": "legal_04_criminal",
+      "domain": "legal",
+      "target_tokens": 30895,
+      "tokens_o200k_base": 30712,
+      "synthetic_pages": 18,
+      "source_articles": [
+        {
+          "pageid": 9566548,
+          "title": "مجموعة القانون الجنائي",
+          "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%AC%D9%85%D9%88%D8%B9%D8%A9_%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D9%84%D8%AC%D9%86%D8%A7%D8%A6%D9%8A",
+          "revision": 72056933
+        },
+        {
+          "pageid": 8013223,
+          "title": "قانون جنائي دولي",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%AC%D9%86%D8%A7%D8%A6%D9%8A_%D8%AF%D9%88%D9%84%D9%8A",
+          "revision": 68233708
+        },
+        {
+          "pageid": 10257560,
+          "title": "سن الموافقة في الولايات المتحدة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B3%D9%86_%D8%A7%D9%84%D9%85%D9%88%D8%A7%D9%81%D9%82%D8%A9_%D9%81%D9%8A_%D8%A7%D9%84%D9%88%D9%84%D8%A7%D9%8A%D8%A7%D8%AA_%D8%A7%D9%84%D9%85%D8%AA%D8%AD%D8%AF%D8%A9",
+          "revision": 76094162
+        }
+      ],
+      "source_count": 3,
+      "arabic_character_fraction": 0.747
+    },
+    {
+      "name": "legal_05_international",
+      "domain": "legal",
+      "target_tokens": 30895,
+      "tokens_o200k_base": 30414,
+      "synthetic_pages": 16,
+      "source_articles": [
+        {
+          "pageid": 19405,
+          "title": "قانون دولي",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%AF%D9%88%D9%84%D9%8A",
+          "revision": 76754361
+        },
+        {
+          "pageid": 246003,
+          "title": "قانون دولي خاص",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%AF%D9%88%D9%84%D9%8A_%D8%AE%D8%A7%D8%B5",
+          "revision": 73160348
+        },
+        {
+          "pageid": 7114080,
+          "title": "قانون دولي عرفي",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%AF%D9%88%D9%84%D9%8A_%D8%B9%D8%B1%D9%81%D9%8A",
+          "revision": 75766942
+        },
+        {
+          "pageid": 176188,
+          "title": "حماية (قانون دولي)",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AD%D9%85%D8%A7%D9%8A%D8%A9_(%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%AF%D9%88%D9%84%D9%8A)",
+          "revision": 74479762
+        },
+        {
+          "pageid": 473238,
+          "title": "القانون الدولي الإنساني",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A_%D8%A7%D9%84%D8%A5%D9%86%D8%B3%D8%A7%D9%86%D9%8A",
+          "revision": 76265351
+        },
+        {
+          "pageid": 1092667,
+          "title": "قانون دولي عام",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%AF%D9%88%D9%84%D9%8A_%D8%B9%D8%A7%D9%85",
+          "revision": 71927147
+        },
+        {
+          "pageid": 1610982,
+          "title": "قانون اللاجئين",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D9%84%D9%84%D8%A7%D8%AC%D8%A6%D9%8A%D9%86",
+          "revision": 71505998
+        },
+        {
+          "pageid": 7075105,
+          "title": "تناسبية (قانون)",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D9%86%D8%A7%D8%B3%D8%A8%D9%8A%D8%A9_(%D9%82%D8%A7%D9%86%D9%88%D9%86)",
+          "revision": 70877358
+        },
+        {
+          "pageid": 7073051,
+          "title": "قانون البناء الدولي",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D9%84%D8%A8%D9%86%D8%A7%D8%A1_%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A",
+          "revision": 76766694
+        },
+        {
+          "pageid": 7164659,
+          "title": "قانون الشعوب",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D9%84%D8%B4%D8%B9%D9%88%D8%A8",
+          "revision": 67933645
+        },
+        {
+          "pageid": 8342667,
+          "title": "تاريخ القانون الدولي",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%A7%D8%B1%D9%8A%D8%AE_%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A",
+          "revision": 75820806
+        },
+        {
+          "pageid": 7082406,
+          "title": "قانون عرفي",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%B9%D8%B1%D9%81%D9%8A",
+          "revision": 75303277
+        },
+        {
+          "pageid": 1711076,
+          "title": "عناصر القانون الدولي",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B9%D9%86%D8%A7%D8%B5%D8%B1_%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A",
+          "revision": 76049476
+        },
+        {
+          "pageid": 7079093,
+          "title": "قانون العمل الدولي",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D9%84%D8%B9%D9%85%D9%84_%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A",
+          "revision": 75303228
+        },
+        {
+          "pageid": 168268,
+          "title": "القانون الدولي لحقوق الإنسان",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A_%D9%84%D8%AD%D9%82%D9%88%D9%82_%D8%A7%D9%84%D8%A5%D9%86%D8%B3%D8%A7%D9%86",
+          "revision": 73602040
+        },
+        {
+          "pageid": 356719,
+          "title": "معاهدة",
+          "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%B9%D8%A7%D9%87%D8%AF%D8%A9",
+          "revision": 71901272
+        },
+        {
+          "pageid": 9989771,
+          "title": "النكبة في القانون الدولي",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%86%D9%83%D8%A8%D8%A9_%D9%81%D9%8A_%D8%A7%D9%84%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A",
+          "revision": 75083151
+        },
+        {
+          "pageid": 1537183,
+          "title": "قانون الإثبات",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D9%84%D8%A5%D8%AB%D8%A8%D8%A7%D8%AA",
+          "revision": 73541095
+        }
+      ],
+      "source_count": 18,
+      "arabic_character_fraction": 0.81
+    },
+    {
+      "name": "social_01_education",
+      "domain": "social",
+      "target_tokens": 79862,
+      "tokens_o200k_base": 79837,
+      "synthetic_pages": 43,
+      "source_articles": [
+        {
+          "pageid": 4203,
+          "title": "تعليم",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%84%D9%8A%D9%85",
+          "revision": 76862760
+        },
+        {
+          "pageid": 7951072,
+          "title": "تعليم علم الفلك",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%B9%D9%84%D9%85_%D8%A7%D9%84%D9%81%D9%84%D9%83",
+          "revision": 76551198
+        },
+        {
+          "pageid": 7709624,
+          "title": "تعليم علوم الحاسوب",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%B9%D9%84%D9%88%D9%85_%D8%A7%D9%84%D8%AD%D8%A7%D8%B3%D9%88%D8%A8",
+          "revision": 76791815
+        },
+        {
+          "pageid": 7898683,
+          "title": "منصة مدرستي",
+          "url": "https://ar.wikipedia.org/wiki/%D9%85%D9%86%D8%B5%D8%A9_%D9%85%D8%AF%D8%B1%D8%B3%D8%AA%D9%8A",
+          "revision": 74268661
+        },
+        {
+          "pageid": 3380896,
+          "title": "تعليم العلوم",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%A7%D9%84%D8%B9%D9%84%D9%88%D9%85",
+          "revision": 76468387
+        },
+        {
+          "pageid": 3369508,
+          "title": "الأثر الاجتماعي والاقتصادي على تعليم الإناث",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%A3%D8%AB%D8%B1_%D8%A7%D9%84%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A_%D9%88%D8%A7%D9%84%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A_%D8%B9%D9%84%D9%89_%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%A7%D9%84%D8%A5%D9%86%D8%A7%D8%AB",
+          "revision": 62180535
+        },
+        {
+          "pageid": 3320404,
+          "title": "مدرسة تعليم السياقة",
+          "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%AF%D8%B1%D8%B3%D8%A9_%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%A7%D9%84%D8%B3%D9%8A%D8%A7%D9%82%D8%A9",
+          "revision": 74597794
+        },
+        {
+          "pageid": 10058095,
+          "title": "قانون تعليم الأفراد ذوي الإعاقة",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%A7%D9%84%D8%A3%D9%81%D8%B1%D8%A7%D8%AF_%D8%B0%D9%88%D9%8A_%D8%A7%D9%84%D8%A5%D8%B9%D8%A7%D9%82%D8%A9",
+          "revision": 75303255
+        },
+        {
+          "pageid": 243006,
+          "title": "تعليم ثانوي",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%AB%D8%A7%D9%86%D9%88%D9%8A",
+          "revision": 76617090
+        },
+        {
+          "pageid": 7828810,
+          "title": "تعليم إنساني",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%A5%D9%86%D8%B3%D8%A7%D9%86%D9%8A",
+          "revision": 76468325
+        },
+        {
+          "pageid": 7805665,
+          "title": "تعليم اللغة الإنجليزية لغير الناطقين بها",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%A7%D9%84%D9%84%D8%BA%D8%A9_%D8%A7%D9%84%D8%A5%D9%86%D8%AC%D9%84%D9%8A%D8%B2%D9%8A%D8%A9_%D9%84%D8%BA%D9%8A%D8%B1_%D8%A7%D9%84%D9%86%D8%A7%D8%B7%D9%82%D9%8A%D9%86_%D8%A8%D9%87%D8%A7",
+          "revision": 73367644
+        },
+        {
+          "pageid": 2275780,
+          "title": "تعليم الإناث",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%A7%D9%84%D8%A5%D9%86%D8%A7%D8%AB",
+          "revision": 76468330
+        },
+        {
+          "pageid": 9974810,
+          "title": "تعليم العربية لغير الناطقين بها",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%A7%D9%84%D8%B9%D8%B1%D8%A8%D9%8A%D8%A9_%D9%84%D8%BA%D9%8A%D8%B1_%D8%A7%D9%84%D9%86%D8%A7%D8%B7%D9%82%D9%8A%D9%86_%D8%A8%D9%87%D8%A7",
+          "revision": 76468378
+        },
+        {
+          "pageid": 1681843,
+          "title": "تعليم الكيمياء",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%A7%D9%84%D9%83%D9%8A%D9%85%D9%8A%D8%A7%D8%A1",
+          "revision": 76468424
+        },
+        {
+          "pageid": 1675086,
+          "title": "نظام تعليم الإنكا",
+          "url": "https://ar.wikipedia.org/wiki/%D9%86%D8%B8%D8%A7%D9%85_%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%A7%D9%84%D8%A5%D9%86%D9%83%D8%A7",
+          "revision": 74198733
+        },
+        {
+          "pageid": 8160641,
+          "title": "تعليم الشخصية",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%A7%D9%84%D8%B4%D8%AE%D8%B5%D9%8A%D8%A9",
+          "revision": 75122923
+        },
+        {
+          "pageid": 9186812,
+          "title": "بحث تعليم الفيزياء",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A8%D8%AD%D8%AB_%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%A7%D9%84%D9%81%D9%8A%D8%B2%D9%8A%D8%A7%D8%A1",
+          "revision": 76809439
+        },
+        {
+          "pageid": 3370777,
+          "title": "تعليم المرأة في السعودية",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%A7%D9%84%D9%85%D8%B1%D8%A3%D8%A9_%D9%81%D9%8A_%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9",
+          "revision": 76468444
+        },
+        {
+          "pageid": 2494548,
+          "title": "وزارة التعليم (السعودية)",
+          "url": "https://ar.wikipedia.org/wiki/%D9%88%D8%B2%D8%A7%D8%B1%D8%A9_%D8%A7%D9%84%D8%AA%D8%B9%D9%84%D9%8A%D9%85_(%D8%A7%D9%84%D8%B3%D8%B9%D9%88%D8%AF%D9%8A%D8%A9)",
+          "revision": 76643482
+        },
+        {
+          "pageid": 3064528,
+          "title": "تعليم التقانة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%A7%D9%84%D8%AA%D9%82%D8%A7%D9%86%D8%A9",
+          "revision": 76058007
+        },
+        {
+          "pageid": 59775,
+          "title": "مهنة",
+          "url": "https://ar.wikipedia.org/wiki/%D9%85%D9%87%D9%86%D8%A9",
+          "revision": 76260366
+        },
+        {
+          "pageid": 133078,
+          "title": "تعليم إعدادي",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%A5%D8%B9%D8%AF%D8%A7%D8%AF%D9%8A",
+          "revision": 76444780
+        },
+        {
+          "pageid": 243427,
+          "title": "تعليم مهني",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D9%85%D9%87%D9%86%D9%8A",
+          "revision": 71884574
+        },
+        {
+          "pageid": 6767901,
+          "title": "تعليم جنسي شامل",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B9%D9%84%D9%8A%D9%85_%D8%AC%D9%86%D8%B3%D9%8A_%D8%B4%D8%A7%D9%85%D9%84",
+          "revision": 76468496
+        }
+      ],
+      "source_count": 24,
+      "arabic_character_fraction": 0.807
+    },
+    {
+      "name": "social_02_health",
+      "domain": "social",
+      "target_tokens": 79862,
+      "tokens_o200k_base": 80004,
+      "synthetic_pages": 45,
+      "source_articles": [
+        {
+          "pageid": 173646,
+          "title": "صحة عامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B5%D8%AD%D8%A9_%D8%B9%D8%A7%D9%85%D8%A9",
+          "revision": 76545861
+        },
+        {
+          "pageid": 8259922,
+          "title": "الصحة العامة للأسنان",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9_%D9%84%D9%84%D8%A3%D8%B3%D9%86%D8%A7%D9%86",
+          "revision": 74410054
+        },
+        {
+          "pageid": 7417733,
+          "title": "تدخل الصحة العامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%AF%D8%AE%D9%84_%D8%A7%D9%84%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9",
+          "revision": 76789083
+        },
+        {
+          "pageid": 937360,
+          "title": "قانون الصحة العامة",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%A7%D9%84%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9",
+          "revision": 71505871
+        },
+        {
+          "pageid": 971443,
+          "title": "مختبر الصحة العامة",
+          "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%AE%D8%AA%D8%A8%D8%B1_%D8%A7%D9%84%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9",
+          "revision": 75428081
+        },
+        {
+          "pageid": 8609797,
+          "title": "دكتوراه الصحة العامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AF%D9%83%D8%AA%D9%88%D8%B1%D8%A7%D9%87_%D8%A7%D9%84%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9",
+          "revision": 65551907
+        },
+        {
+          "pageid": 5200244,
+          "title": "صحة النظام البيئي",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D9%86%D8%B8%D8%A7%D9%85_%D8%A7%D9%84%D8%A8%D9%8A%D8%A6%D9%8A",
+          "revision": 75242973
+        },
+        {
+          "pageid": 1535229,
+          "title": "تأمين صحي",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%A3%D9%85%D9%8A%D9%86_%D8%B5%D8%AD%D9%8A",
+          "revision": 73541154
+        },
+        {
+          "pageid": 5464128,
+          "title": "تمريض صحة المجتمع",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D9%85%D8%B1%D9%8A%D8%B6_%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9",
+          "revision": 69354765
+        },
+        {
+          "pageid": 10249634,
+          "title": "وزارة الصحة العامة (قطر)",
+          "url": "https://ar.wikipedia.org/wiki/%D9%88%D8%B2%D8%A7%D8%B1%D8%A9_%D8%A7%D9%84%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9_(%D9%82%D8%B7%D8%B1)",
+          "revision": 72902812
+        },
+        {
+          "pageid": 7776910,
+          "title": "أمن صحي",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A3%D9%85%D9%86_%D8%B5%D8%AD%D9%8A",
+          "revision": 76579646
+        },
+        {
+          "pageid": 948743,
+          "title": "ترصد الصحة العامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%B1%D8%B5%D8%AF_%D8%A7%D9%84%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9",
+          "revision": 75016309
+        },
+        {
+          "pageid": 3758034,
+          "title": "صحة المجتمع",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D9%85%D8%AC%D8%AA%D9%85%D8%B9",
+          "revision": 75578376
+        },
+        {
+          "pageid": 420592,
+          "title": "رعاية صحية",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B1%D8%B9%D8%A7%D9%8A%D8%A9_%D8%B5%D8%AD%D9%8A%D8%A9",
+          "revision": 73535472
+        },
+        {
+          "pageid": 176199,
+          "title": "علوم الصحة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B9%D9%84%D9%88%D9%85_%D8%A7%D9%84%D8%B5%D8%AD%D8%A9",
+          "revision": 73906280
+        },
+        {
+          "pageid": 23655,
+          "title": "منظمة الصحة العالمية",
+          "url": "https://ar.wikipedia.org/wiki/%D9%85%D9%86%D8%B8%D9%85%D8%A9_%D8%A7%D9%84%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%85%D9%8A%D8%A9",
+          "revision": 75588869
+        },
+        {
+          "pageid": 9355709,
+          "title": "قانون تدخين السجائر للصحة العامة",
+          "url": "https://ar.wikipedia.org/wiki/%D9%82%D8%A7%D9%86%D9%88%D9%86_%D8%AA%D8%AF%D8%AE%D9%8A%D9%86_%D8%A7%D9%84%D8%B3%D8%AC%D8%A7%D8%A6%D8%B1_%D9%84%D9%84%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9",
+          "revision": 72829432
+        },
+        {
+          "pageid": 1507351,
+          "title": "أحمد الزند",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A3%D8%AD%D9%85%D8%AF_%D8%A7%D9%84%D8%B2%D9%86%D8%AF",
+          "revision": 76868836
+        },
+        {
+          "pageid": 7485838,
+          "title": "الجمعية الأمريكية للصحة العامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%AC%D9%85%D8%B9%D9%8A%D8%A9_%D8%A7%D9%84%D8%A3%D9%85%D8%B1%D9%8A%D9%83%D9%8A%D8%A9_%D9%84%D9%84%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9",
+          "revision": 76161918
+        },
+        {
+          "pageid": 3376220,
+          "title": "صحة المرأة في إثيوبيا",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D9%85%D8%B1%D8%A3%D8%A9_%D9%81%D9%8A_%D8%A5%D8%AB%D9%8A%D9%88%D8%A8%D9%8A%D8%A7",
+          "revision": 71461523
+        },
+        {
+          "pageid": 7874182,
+          "title": "سيتي حازمة محمد علي",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B3%D9%8A%D8%AA%D9%8A_%D8%AD%D8%A7%D8%B2%D9%85%D8%A9_%D9%85%D8%AD%D9%85%D8%AF_%D8%B9%D9%84%D9%8A",
+          "revision": 76871168
+        },
+        {
+          "pageid": 3586071,
+          "title": "أزمة صحية",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A3%D8%B2%D9%85%D8%A9_%D8%B5%D8%AD%D9%8A%D8%A9",
+          "revision": 74882330
+        },
+        {
+          "pageid": 9884594,
+          "title": "المكتب الدولي للصحة العامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%85%D9%83%D8%AA%D8%A8_%D8%A7%D9%84%D8%AF%D9%88%D9%84%D9%8A_%D9%84%D9%84%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9",
+          "revision": 76310008
+        },
+        {
+          "pageid": 1846,
+          "title": "صحة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B5%D8%AD%D8%A9",
+          "revision": 75578371
+        },
+        {
+          "pageid": 921829,
+          "title": "صحة عالمية",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B5%D8%AD%D8%A9_%D8%B9%D8%A7%D9%84%D9%85%D9%8A%D8%A9",
+          "revision": 76083243
+        },
+        {
+          "pageid": 8457780,
+          "title": "المعهد العالي للصحة العامة (جامعة الإسكندرية)",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%85%D8%B9%D9%87%D8%AF_%D8%A7%D9%84%D8%B9%D8%A7%D9%84%D9%8A_%D9%84%D9%84%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9_(%D8%AC%D8%A7%D9%85%D8%B9%D8%A9_%D8%A7%D9%84%D8%A5%D8%B3%D9%83%D9%86%D8%AF%D8%B1%D9%8A%D8%A9)",
+          "revision": 76308182
+        },
+        {
+          "pageid": 9756523,
+          "title": "محددات اجتماعية للصحة النفسية",
+          "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%AD%D8%AF%D8%AF%D8%A7%D8%AA_%D8%A7%D8%AC%D8%AA%D9%85%D8%A7%D8%B9%D9%8A%D8%A9_%D9%84%D9%84%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D9%86%D9%81%D8%B3%D9%8A%D8%A9",
+          "revision": 75425250
+        },
+        {
+          "pageid": 6332372,
+          "title": "الهيئة العامة للرعاية الصحية (مصر)",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%87%D9%8A%D8%A6%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9_%D9%84%D9%84%D8%B1%D8%B9%D8%A7%D9%8A%D8%A9_%D8%A7%D9%84%D8%B5%D8%AD%D9%8A%D8%A9_(%D9%85%D8%B5%D8%B1)",
+          "revision": 76754506
+        },
+        {
+          "pageid": 495415,
+          "title": "مراكز السيطرة على الأمراض والوقاية منها",
+          "url": "https://ar.wikipedia.org/wiki/%D9%85%D8%B1%D8%A7%D9%83%D8%B2_%D8%A7%D9%84%D8%B3%D9%8A%D8%B7%D8%B1%D8%A9_%D8%B9%D9%84%D9%89_%D8%A7%D9%84%D8%A3%D9%85%D8%B1%D8%A7%D8%B6_%D9%88%D8%A7%D9%84%D9%88%D9%82%D8%A7%D9%8A%D8%A9_%D9%85%D9%86%D9%87%D8%A7",
+          "revision": 75430017
+        },
+        {
+          "pageid": 5627781,
+          "title": "صحة رقمية",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B5%D8%AD%D8%A9_%D8%B1%D9%82%D9%85%D9%8A%D8%A9",
+          "revision": 75583335
+        },
+        {
+          "pageid": 5669373,
+          "title": "وزارة الصحة العامة (لبنان)",
+          "url": "https://ar.wikipedia.org/wiki/%D9%88%D8%B2%D8%A7%D8%B1%D8%A9_%D8%A7%D9%84%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9_(%D9%84%D8%A8%D9%86%D8%A7%D9%86)",
+          "revision": 75942476
+        },
+        {
+          "pageid": 2388512,
+          "title": "سياسة صحية",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B3%D9%8A%D8%A7%D8%B3%D8%A9_%D8%B5%D8%AD%D9%8A%D8%A9",
+          "revision": 76474293
+        },
+        {
+          "pageid": 9422978,
+          "title": "المعمل القومي للصحة العامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%85%D8%B9%D9%85%D9%84_%D8%A7%D9%84%D9%82%D9%88%D9%85%D9%8A_%D9%84%D9%84%D8%B5%D8%AD%D8%A9_%D8%A7%D9%84%D8%B9%D8%A7%D9%85%D8%A9",
+          "revision": 74337791
+        },
+        {
+          "pageid": 7062717,
+          "title": "الحق في الصحة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%AD%D9%82_%D9%81%D9%8A_%D8%A7%D9%84%D8%B5%D8%AD%D8%A9",
+          "revision": 76364509
+        },
+        {
+          "pageid": 8745010,
+          "title": "سياسات صحية",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B3%D9%8A%D8%A7%D8%B3%D8%A7%D8%AA_%D8%B5%D8%AD%D9%8A%D8%A9",
+          "revision": 65643474
+        },
+        {
+          "pageid": 7082888,
+          "title": "رعاية صحية شاملة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B1%D8%B9%D8%A7%D9%8A%D8%A9_%D8%B5%D8%AD%D9%8A%D8%A9_%D8%B4%D8%A7%D9%85%D9%84%D8%A9",
+          "revision": 76867617
+        },
+        {
+          "pageid": 9761325,
+          "title": "الرعاية الصحية في تايلاند",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%B1%D8%B9%D8%A7%D9%8A%D8%A9_%D8%A7%D9%84%D8%B5%D8%AD%D9%8A%D8%A9_%D9%81%D9%8A_%D8%AA%D8%A7%D9%8A%D9%84%D8%A7%D9%86%D8%AF",
+          "revision": 76365247
+        },
+        {
+          "pageid": 9734359,
+          "title": "الرعاية الصحية في قطر",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%B1%D8%B9%D8%A7%D9%8A%D8%A9_%D8%A7%D9%84%D8%B5%D8%AD%D9%8A%D8%A9_%D9%81%D9%8A_%D9%82%D8%B7%D8%B1",
+          "revision": 76193007
+        },
+        {
+          "pageid": 576913,
+          "title": "رعاية صحية أولية",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B1%D8%B9%D8%A7%D9%8A%D8%A9_%D8%B5%D8%AD%D9%8A%D8%A9_%D8%A3%D9%88%D9%84%D9%8A%D8%A9",
+          "revision": 76867606
+        },
+        {
+          "pageid": 924133,
+          "title": "نظام رعاية صحية",
+          "url": "https://ar.wikipedia.org/wiki/%D9%86%D8%B8%D8%A7%D9%85_%D8%B1%D8%B9%D8%A7%D9%8A%D8%A9_%D8%B5%D8%AD%D9%8A%D8%A9",
+          "revision": 72822605
+        }
+      ],
+      "source_count": 40,
+      "arabic_character_fraction": 0.804
+    },
+    {
+      "name": "social_03_development",
+      "domain": "social",
+      "target_tokens": 79862,
+      "tokens_o200k_base": 79693,
+      "synthetic_pages": 44,
+      "source_articles": [
+        {
+          "pageid": 57286,
+          "title": "تنمية مستدامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9",
+          "revision": 76792404
+        },
+        {
+          "pageid": 9326332,
+          "title": "جهاز مستقبل مصر للتنمية المستدامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AC%D9%87%D8%A7%D8%B2_%D9%85%D8%B3%D8%AA%D9%82%D8%A8%D9%84_%D9%85%D8%B5%D8%B1_%D9%84%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9",
+          "revision": 76820119
+        },
+        {
+          "pageid": 2901693,
+          "title": "أهداف التنمية المستدامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A3%D9%87%D8%AF%D8%A7%D9%81_%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9",
+          "revision": 76291952
+        },
+        {
+          "pageid": 6870311,
+          "title": "تنمية مستدامة بيئيا",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9_%D8%A8%D9%8A%D8%A6%D9%8A%D8%A7",
+          "revision": 76792406
+        },
+        {
+          "pageid": 1575265,
+          "title": "تنمية",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D9%86%D9%85%D9%8A%D8%A9",
+          "revision": 69698656
+        },
+        {
+          "pageid": 8392033,
+          "title": "أهداف التنمية المستدامة وأستراليا",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A3%D9%87%D8%AF%D8%A7%D9%81_%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9_%D9%88%D8%A3%D8%B3%D8%AA%D8%B1%D8%A7%D9%84%D9%8A%D8%A7",
+          "revision": 68004091
+        },
+        {
+          "pageid": 6691849,
+          "title": "التنمية المستدامة في إسكتلندا",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9_%D9%81%D9%8A_%D8%A5%D8%B3%D9%83%D8%AA%D9%84%D9%86%D8%AF%D8%A7",
+          "revision": 76150773
+        },
+        {
+          "pageid": 8815557,
+          "title": "أهداف التنمية المستدامة ونيجيريا",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A3%D9%87%D8%AF%D8%A7%D9%81_%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9_%D9%88%D9%86%D9%8A%D8%AC%D9%8A%D8%B1%D9%8A%D8%A7",
+          "revision": 61240641
+        },
+        {
+          "pageid": 8267988,
+          "title": "الهدف العاشر من أهداف التنمية المستدامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%87%D8%AF%D9%81_%D8%A7%D9%84%D8%B9%D8%A7%D8%B4%D8%B1_%D9%85%D9%86_%D8%A3%D9%87%D8%AF%D8%A7%D9%81_%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9",
+          "revision": 74786748
+        },
+        {
+          "pageid": 9231524,
+          "title": "المواطنة للتنمية المستدامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%85%D9%88%D8%A7%D8%B7%D9%86%D8%A9_%D9%84%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9",
+          "revision": 76314268
+        },
+        {
+          "pageid": 8257682,
+          "title": "الهدف الثالث من أهداف التنمية المستدامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%87%D8%AF%D9%81_%D8%A7%D9%84%D8%AB%D8%A7%D9%84%D8%AB_%D9%85%D9%86_%D8%A3%D9%87%D8%AF%D8%A7%D9%81_%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9",
+          "revision": 76320709
+        },
+        {
+          "pageid": 665754,
+          "title": "تنمية بشرية (اقتصاد)",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A8%D8%B4%D8%B1%D9%8A%D8%A9_(%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF)",
+          "revision": 74864600
+        },
+        {
+          "pageid": 8476425,
+          "title": "الهدف التاسع من أهداف التنمية المستدامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%87%D8%AF%D9%81_%D8%A7%D9%84%D8%AA%D8%A7%D8%B3%D8%B9_%D9%85%D9%86_%D8%A3%D9%87%D8%AF%D8%A7%D9%81_%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9",
+          "revision": 74786720
+        },
+        {
+          "pageid": 8267981,
+          "title": "الهدف 17 من أهداف التنمية المستدامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%87%D8%AF%D9%81_17_%D9%85%D9%86_%D8%A3%D9%87%D8%AF%D8%A7%D9%81_%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9",
+          "revision": 73215583
+        },
+        {
+          "pageid": 155790,
+          "title": "انفجار سكاني",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%86%D9%81%D8%AC%D8%A7%D8%B1_%D8%B3%D9%83%D8%A7%D9%86%D9%8A",
+          "revision": 76337147
+        },
+        {
+          "pageid": 8815552,
+          "title": "أهداف التنمية المستدامة وغانا",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A3%D9%87%D8%AF%D8%A7%D9%81_%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9_%D9%88%D8%BA%D8%A7%D9%86%D8%A7",
+          "revision": 61219054
+        },
+        {
+          "pageid": 5207330,
+          "title": "التنمية الريفية الزراعية المستدامة (برنامج)",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D8%B1%D9%8A%D9%81%D9%8A%D8%A9_%D8%A7%D9%84%D8%B2%D8%B1%D8%A7%D8%B9%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9_(%D8%A8%D8%B1%D9%86%D8%A7%D9%85%D8%AC)",
+          "revision": 76150770
+        },
+        {
+          "pageid": 8125067,
+          "title": "الهدف الثاني من أهداف التنمية المستدامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%87%D8%AF%D9%81_%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A_%D9%85%D9%86_%D8%A3%D9%87%D8%AF%D8%A7%D9%81_%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9",
+          "revision": 74787191
+        },
+        {
+          "pageid": 2426607,
+          "title": "تخفيف آثار تغير المناخ",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D8%AE%D9%81%D9%8A%D9%81_%D8%A2%D8%AB%D8%A7%D8%B1_%D8%AA%D8%BA%D9%8A%D8%B1_%D8%A7%D9%84%D9%85%D9%86%D8%A7%D8%AE",
+          "revision": 76446467
+        },
+        {
+          "pageid": 8862193,
+          "title": "الهدف الثامن من أهداف التنمية المستدامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%87%D8%AF%D9%81_%D8%A7%D9%84%D8%AB%D8%A7%D9%85%D9%86_%D9%85%D9%86_%D8%A3%D9%87%D8%AF%D8%A7%D9%81_%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9",
+          "revision": 74786705
+        },
+        {
+          "pageid": 7459232,
+          "title": "الهدف السادس من أهداف التنمية المستدامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%87%D8%AF%D9%81_%D8%A7%D9%84%D8%B3%D8%A7%D8%AF%D8%B3_%D9%85%D9%86_%D8%A3%D9%87%D8%AF%D8%A7%D9%81_%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9",
+          "revision": 76320760
+        },
+        {
+          "pageid": 2297448,
+          "title": "سياحة مستدامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B3%D9%8A%D8%A7%D8%AD%D8%A9_%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9",
+          "revision": 62198217
+        },
+        {
+          "pageid": 8121987,
+          "title": "الهدف 15 من أهداف التنمية المستدامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%87%D8%AF%D9%81_15_%D9%85%D9%86_%D8%A3%D9%87%D8%AF%D8%A7%D9%81_%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9",
+          "revision": 75574520
+        },
+        {
+          "pageid": 5631621,
+          "title": "تنمية اقتصادية",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%82%D8%AA%D8%B5%D8%A7%D8%AF%D9%8A%D8%A9",
+          "revision": 74107705
+        },
+        {
+          "pageid": 8728557,
+          "title": "أهداف التنمية المستدامة في لبنان",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A3%D9%87%D8%AF%D8%A7%D9%81_%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9_%D9%81%D9%8A_%D9%84%D8%A8%D9%86%D8%A7%D9%86",
+          "revision": 70503626
+        },
+        {
+          "pageid": 601920,
+          "title": "استدامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9",
+          "revision": 76497164
+        },
+        {
+          "pageid": 1085786,
+          "title": "دراسات التنمية",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AF%D8%B1%D8%A7%D8%B3%D8%A7%D8%AA_%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9",
+          "revision": 73603566
+        },
+        {
+          "pageid": 8139437,
+          "title": "الهدف الثاني عشر من أهداف التنمية المستدامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%A7%D9%84%D9%87%D8%AF%D9%81_%D8%A7%D9%84%D8%AB%D8%A7%D9%86%D9%8A_%D8%B9%D8%B4%D8%B1_%D9%85%D9%86_%D8%A3%D9%87%D8%AF%D8%A7%D9%81_%D8%A7%D9%84%D8%AA%D9%86%D9%85%D9%8A%D8%A9_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9",
+          "revision": 74786771
+        },
+        {
+          "pageid": 9619201,
+          "title": "سبل العيش المستدامة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%B3%D8%A8%D9%84_%D8%A7%D9%84%D8%B9%D9%8A%D8%B4_%D8%A7%D9%84%D9%85%D8%B3%D8%AA%D8%AF%D8%A7%D9%85%D8%A9",
+          "revision": 71134291
+        },
+        {
+          "pageid": 615861,
+          "title": "حزب الأصالة والمعاصرة",
+          "url": "https://ar.wikipedia.org/wiki/%D8%AD%D8%B2%D8%A8_%D8%A7%D9%84%D8%A3%D8%B5%D8%A7%D9%84%D8%A9_%D9%88%D8%A7%D9%84%D9%85%D8%B9%D8%A7%D8%B5%D8%B1%D8%A9",
+          "revision": 76817618
+        }
+      ],
+      "source_count": 30,
+      "arabic_character_fraction": 0.809
+    }
+  ]
+}

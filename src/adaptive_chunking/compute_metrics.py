@@ -51,7 +51,7 @@ def compute_metrics_per_origin(
     parser_splitpoints_per_doc = {}
     full_text_per_doc = {}
     for doc_path in parsed_docs_dir.glob("*.json"):
-        with open(doc_path, "r") as file:
+        with open(doc_path, "r", encoding="utf-8") as file:
             doc = json.load(file)
 
         doc_name = doc_path.with_suffix("").name

@@ -1,0 +1,17 @@
+stage,method,documents,documents_covered,chunks,mean_tokens,max_tokens,chunks_at_most_1100_pct
+no_oversizing,llm_regex,11,11,1551,262.8,1097,100.0
+no_oversizing,page,11,11,515,791.6,1098,100.0
+no_oversizing,semantic,11,11,700,582.9,1100,100.0
+no_oversizing,sentence,11,11,678,601.5,1099,100.0
+raw,langch_recurs_1100,11,11,536,761.3,1101,99.6
+raw,langch_recurs_default,11,11,435,943.1,1327,71.7
+raw,llm_regex,11,11,1513,269.4,6031,98.1
+raw,our_recurs_1100,11,11,469,869.2,1100,100.0
+raw,our_recurs_600,11,11,863,472.6,600,100.0
+raw,page,11,11,230,1772.3,6031,3.9
+raw,semantic,11,11,473,862.5,5587,72.1
+raw,sentence,11,11,570,715.4,2922,82.8
+small_merged,llm_regex,11,11,1148,355.1,1124,99.9
+small_merged,page,11,11,512,796.2,1132,99.6
+small_merged,semantic,11,11,619,659.0,1127,99.7
+small_merged,sentence,11,11,670,608.7,1138,99.7

@@ -62,7 +62,7 @@ class SentenceSplitter:
     Split text into sentences using NLTK, Stanza, or SpaCy.
     """
 
-    def __init__(self, method = "nltk", sentences_per_chunk = 1, device = "cpu"):
+    def __init__(self, method = "nltk", sentences_per_chunk = 1, device = "cpu", language = "en"):
         if method == "nltk":
             # Download NLTK punkt tokenizer if not already downloaded
             try:
@@ -88,6 +88,8 @@ class SentenceSplitter:
 
         self.sentences_per_chunk = sentences_per_chunk
         self.device = device
+        self.language = language
+        self._stanza_pipeline = None
 
     def _split_into_sentences_nltk(self, text: str) -> list[str]:
         """
@@ -136,14 +138,21 @@ class SentenceSplitter:
         return result
 
     def _split_into_sentences_stanza(self, text: str) -> list[str]:
-        try:
-            nlp = stanza.Pipeline('en', processors='tokenize', tokenize_no_ssplit=False, verbose=False, device=self.device)
-        except Exception as e:
-            print("Stanza model not found. Downloading...")
-            stanza.download('en')
-            nlp = stanza.Pipeline('en', processors='tokenize', tokenize_no_ssplit=False, verbose=False, device=self.device)
+        if self._stanza_pipeline is None:
+            try:
+                self._stanza_pipeline = stanza.Pipeline(
+                    self.language, processors='tokenize', tokenize_no_ssplit=False,
+                    verbose=False, device=self.device,
+                )
+            except FileNotFoundError:
+                print(f"Stanza {self.language} model not found. Downloading...")
+                stanza.download(self.language)
+                self._stanza_pipeline = stanza.Pipeline(
+                    self.language, processors='tokenize', tokenize_no_ssplit=False,
+                    verbose=False, device=self.device,
+                )
 
-        doc = nlp(text)
+        doc = self._stanza_pipeline(text)
         sentences = doc.sentences
         result = []
 

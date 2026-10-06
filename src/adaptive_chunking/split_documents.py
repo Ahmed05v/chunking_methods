@@ -30,7 +30,7 @@ async def split_documents_from_dir(
     parsed_docs = {}
     for json_path in parsed_docs_dir.glob("*.json"):
         print(f"Document: {json_path.name}")
-        with json_path.open("r") as f:
+        with json_path.open("r", encoding="utf-8") as f:
             parsed_docs[json_path.with_suffix('').name] = json.load(f)
     
     if len(parsed_docs) == 0:

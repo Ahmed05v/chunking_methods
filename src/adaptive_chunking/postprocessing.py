@@ -305,7 +305,7 @@ def split_oversized_chunks_from_df(
 
     parsed_docs = {}
     for json_path in parsed_docs_dir.glob("*.json"):
-        with json_path.open("r") as f:
+        with json_path.open("r", encoding="utf-8") as f:
             parsed_docs[json_path.with_suffix('').name] = json.load(f)
     
     if len(parsed_docs) == 0:
@@ -418,7 +418,7 @@ def merge_small_chunks_from_df(
 
     parsed_docs = {}
     for json_path in parsed_docs_dir.glob("*.json"):
-        with json_path.open("r") as f:
+        with json_path.open("r", encoding="utf-8") as f:
             parsed_docs[json_path.with_suffix('').name] = json.load(f)
     
     if len(parsed_docs) == 0:

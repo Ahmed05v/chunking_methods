@@ -113,6 +113,8 @@ uv.lock
 # Data exports (keep data/clair/ for paper reproduction)
 data/*
 !data/clair/
+!data/arabic_pilot/
+data/arabic_pilot/source_cache/
 
 CLAUDE.md
 

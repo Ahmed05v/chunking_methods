@@ -149,6 +149,7 @@ async def run_chunking(
     attention_implementation: str = "sdpa",
     only_methods: set[str] | None = None,
     approximate_llm_regex: bool = False,
+    language: str = "en",
 ):
     """Split all documents using 8 methods, then postprocess."""
     from ..splitters import RecursiveSplitter
@@ -177,7 +178,7 @@ async def run_chunking(
     if wanted("sentence"):
         from .splitters import SentenceSplitter
         sync_splitters["sentence"] = SentenceSplitter(
-            method="stanza", sentences_per_chunk=5, device=device,
+            method="stanza", sentences_per_chunk=5, device=device, language=language,
         )
 
     # langchain recursive default
@@ -933,6 +934,10 @@ def main():
         help="Device for ML models, e.g. 'cuda:0' (default: cpu).",
     )
     parser.add_argument(
+        "--language", choices=["en", "ar"], default="en",
+        help="Sentence splitter language (default: en; use ar for Arabic documents).",
+    )
+    parser.add_argument(
         "--skip-llm-regex", action="store_true",
         help="Skip the LLM regex splitter (requires OpenAI API key).",
     )
@@ -992,6 +997,7 @@ def main():
             attention_implementation=args.attention_implementation,
             only_methods=set(args.only_methods) if args.only_methods else None,
             approximate_llm_regex=args.approximate_llm_regex,
+            language=args.language,
         ))
 
     if run_all or "mentions" in steps:

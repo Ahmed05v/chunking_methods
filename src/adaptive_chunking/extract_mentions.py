@@ -14,7 +14,7 @@ def find_mentions_per_origin(parsed_docs_dir: str|Path, models: dict, output_dir
     parsed_docs = {}
     for file_path in parsed_docs_dir.iterdir():
         if file_path.suffix == '.json':
-            with open(file_path, 'r') as f:
+            with open(file_path, 'r', encoding='utf-8') as f:
                 parsed_docs[file_path.with_suffix('').name] = json.load(f)
     
     # extract mentions
