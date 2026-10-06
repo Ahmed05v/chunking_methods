@@ -20,11 +20,12 @@ The four postprocessed methods (page, sentence, semantic, and heading regex)
 have additional results after splitting oversized chunks and merging small
 ones. See [`chunk_size_summary.csv`](chunk_size_summary.csv) for all stages.
 See [`PAPER_COMPARISON.md`](PAPER_COMPARISON.md) for the side-by-side paper
-comparison, including the quality metrics that have not been measured here.
+comparison. Arabic ICC and DCC were measured with local Qwen embeddings and
+are labeled as approximations in [`intrinsic_vs_paper.csv`](intrinsic_vs_paper.csv).
 `chunks/raw/chunks.parquet` stores the raw chunks; `chunks/no_oversizing/` and
 `chunks/small_merged/` store those postprocessed methods. Numbers above are
-basic chunk-size/coverage checks, **not** the paper's full intrinsic metrics or
-RAG accuracy scores.
+basic chunk-size/coverage checks. Arabic reference completeness and RAG
+accuracy remain unmeasured.
 
 The source collections are assembled from attributed Arabic Wikipedia text.
 Their pages and paragraph boundaries are synthetic. See

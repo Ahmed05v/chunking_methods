@@ -33,22 +33,23 @@ The Arabic corpus is roughly one-third as large overall, so **chunk counts shoul
 
 ## Quality metrics (paper Table 3)
 
-**BI proxy** below uses Arabic *paragraph boundaries*. The paper's BI uses Azure parser structural blocks, including tables and figures; these are different targets and the scores should not be directly compared. RC, ICC, and DCC were **not measured** for this Arabic pilot. Arabic RC requires an Arabic coreference model; the paper explicitly notes that its Maverick implementation supports English only. ICC/DCC require separately validated Arabic embedding evaluation. Consequently, an Arabic five-metric mean or adaptive winner cannot be calculated.
+Arabic ICC and DCC were computed with **local Qwen3-Embedding-0.6B**, rather than the paper's Jina v3. Arabic ICC uses paragraph boundaries, whereas the paper used parser text spans. **BI proxy** below also uses Arabic *paragraph boundaries*; the paper's BI used Azure parser structural blocks, including tables and figures. These are different targets, so the ICC/DCC/BI values are **not like-for-like**. Arabic RC remains unmeasured: the paper explicitly notes that its Maverick model supports English only. The Arabic five-metric mean therefore cannot be calculated. The per-document values, including valid-document counts, are in [`intrinsic_per_document.csv`](intrinsic_per_document.csv) and [`intrinsic_vs_paper.csv`](intrinsic_vs_paper.csv).
 
-| Method | Arabic BI paragraph proxy | Paper BI | Paper RC | Paper ICC | Paper DCC | Paper 5-metric mean |
+| Method | ICC: Arabic Qwen / paper Jina | DCC: Arabic Qwen / paper Jina | BI: Arabic paragraph proxy / paper | SC: Arabic / paper | Arabic 4-metric proxy | Paper 5-metric mean |
 |---|---:|---:|---:|---:|---:|---:|
-| Heading regex / GPT-5 regex | 98.8% | 98.1% | 98.0% | 70.9% | 82.4% | 89.80% |
-| Project recursive 1,100 | 97.5% | 98.1% | 99.0% | 66.6% | 89.7% | 90.68% |
-| Project recursive 600 | 88.7% | 94.8% | 97.2% | 69.6% | 84.7% | 89.24% |
-| Page, postprocessed | 98.3% | 99.9% | 97.2% | 69.2% | 86.4% | 90.52% |
-| LangChain recursive 1,100 | 97.7% | 98.6% | 98.4% | 64.7% | 86.8% | 88.37% |
-| LangChain recursive default | 99.3% | 95.0% | 96.1% | 65.6% | 88.8% | 88.62% |
-| Page, raw | 100.0% | 100.0% | 97.1% | 69.3% | 86.1% | 89.03% |
-| Semantic, raw | 82.5% | 91.3% | 97.5% | 69.3% | 76.3% | 76.49% |
-| Sentence, raw | 90.9% | 61.9% | 86.3% | 78.4% | 72.5% | 73.26% |
-| Adaptive selection | **not run** | 99.4% | 99.0% | 68.2% | 88.8% | 91.07% |
+| Heading regex / GPT-5 regex | 81.0% / 70.9% | 68.0% / 82.4% | 98.8% / 98.1% | 99.9% / 99.6% | 86.9% | 89.80% |
+| Project recursive 1,100 | 74.4% / 66.6% | 79.3% / 89.7% | 97.5% / 98.1% | 99.8% / 100.0% | 87.8% | 90.68% |
+| Project recursive 600 | 75.3% / 69.6% | 71.7% / 84.7% | 88.7% / 94.8% | 99.5% / 100.0% | 83.8% | 89.24% |
+| Page, postprocessed | 74.5% / 69.2% | 77.4% / 86.4% | 98.3% / 99.9% | 99.5% / 99.9% | 87.4% | 90.52% |
+| LangChain recursive 1,100 | 65.1% / 64.7% | 77.1% / 86.8% | 97.7% / 98.6% | 93.4% / 93.3% | 83.3% | 88.37% |
+| LangChain recursive default | 64.6% / 65.6% | 81.5% / 88.8% | 99.3% / 95.0% | 68.7% / 97.7% | 78.5% | 88.62% |
+| Page, raw | 67.0% / 69.3% | 85.7% (**7/11**) / 86.1% | 100.0% / 100.0% | 3.6% / 92.7% | 64.3% (**7/11**) | 89.03% |
+| Semantic, raw | 71.1% / 69.3% | 68.6% / 76.3% | 82.5% / 91.3% | 48.9% / 48.1% | 67.8% | 76.49% |
+| Sentence, raw | 74.6% / 78.4% | 74.2% / 72.5% | 90.9% / 61.9% | 79.5% / 67.2% | 79.8% | 73.26% |
 
-Paper Table 4 selected postprocessed page for 48% of documents, recursive 1,100 for 42%, GPT-5 regex for 6%, and recursive 600 for 3%. **No Arabic selection percentages exist**, since three of the five required metrics are missing and BI is only a proxy.
+All Arabic values are means across 11 documents unless noted. Raw-page DCC is undefined on four documents because its 3,000-token windows contain fewer than two large synthetic pages. The **Arabic 4-metric proxy must not be compared numerically with the paper's 5-metric mean**. Paper RC by method is recorded in `intrinsic_vs_paper.csv`.
+
+For a **provisional four-metric selection** among the paper's four adaptive candidates, recursive 1,100 wins 8/11 Arabic collections (72.7%) and postprocessed page wins 3/11 (27.3%); see [`provisional_four_metric_selection.csv`](provisional_four_metric_selection.csv). Paper Table 4 selected page for 48%, recursive 1,100 for 42%, GPT-5 regex for 6%, and recursive 600 for 3%. These policies use different metric sets and different documents.
 
 ## RAG and runtime (paper Tables 5 and 6)
 

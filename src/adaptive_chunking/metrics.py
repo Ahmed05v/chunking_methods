@@ -110,7 +110,8 @@ def compute_intrachunk_cohesion(
             if chunk_start <= split_point < chunk_end
         ]
 
-        boundaries = sorted({0, *local_split_points, chunk_end})
+        # Split points above are chunk-relative; the final boundary must be too.
+        boundaries = sorted({0, *local_split_points, len(chunk)})
 
         sentences: list[str] = []
         for i in range(len(boundaries) - 1):

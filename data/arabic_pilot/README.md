@@ -42,8 +42,9 @@ $env:STANZA_RESOURCES_DIR=(Resolve-Path .).Path + '\.stanza_resources'
 ```
 
 This command uses a local **heading regex approximation**, not the paper's LLM
-regex method. The default semantic model and intrinsic cohesion/context metrics
-may run on Arabic, but they need separate validation before comparing scores.
+regex method. ICC and DCC pilot scores were subsequently computed with local
+Qwen embeddings; see `results/arabic_pilot/intrinsic_vs_paper.csv`. They are
+not directly comparable to the paper's Jina-based scores.
 The provided English coreference model is unsuitable for Arabic, so reference
 completeness cannot be claimed without an Arabic coreference system and checked
 annotations. The corpus also has no Arabic evaluation questions or gold answers;
